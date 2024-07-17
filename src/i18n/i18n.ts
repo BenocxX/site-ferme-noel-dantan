@@ -7,14 +7,18 @@ import { makeZodI18nMap } from "zod-i18n-map";
 import enTranslations from "./en/index";
 import frTranslations from "./fr/index";
 
+export const defaultNS = "common";
+export const resources = {
+  en: enTranslations,
+  fr: frTranslations,
+} as const;
+
 i18next.use(initReactI18next).init({
   lng: "fr",
   fallbackLng: "en",
   supportedLngs: ["fr", "en"],
-  resources: {
-    en: enTranslations,
-    fr: frTranslations,
-  },
+  defaultNS,
+  resources,
 });
 
 z.setErrorMap(makeZodI18nMap({ ns: ["zod", "zod_custom"] }));
