@@ -9,7 +9,7 @@ function Index() {
   return (
     <div className="p-2">
       <h3>Welcome Home!</h3>
-      <div className="w-screen h-screen flex items-center justify-center">
+      <div className="w-screen mt-44 flex items-center justify-center">
         <ReservationForm />
       </div>
     </div>
