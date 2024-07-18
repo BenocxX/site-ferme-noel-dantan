@@ -16,16 +16,17 @@ import {
 } from "@/components/ui/form";
 import { toast } from "sonner";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 
 const FormSchema = z.object({
   date: z.date(),
 });
 
-export function ReservationForm() {
+export function ReservationForm({ className }: React.ComponentProps<"form">) {
   const today = new Date();
   const startingMonth = 10;
 
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation("reservation");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -37,7 +38,10 @@ export function ReservationForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={cn("space-y-8", className)}
+      >
         <FormField
           control={form.control}
           name="date"
@@ -45,13 +49,14 @@ export function ReservationForm() {
             <FormItem className="flex flex-col">
               <FormLabel>Date</FormLabel>
               <Calendar
-                className="rounded-md border"
+                className="rounded-md border w-max"
                 mode="single"
                 selected={field.value}
                 locale={i18n.language === "fr" ? frCA : undefined}
                 labels={{
-                  labelNext: () => t("calendar.nextMonth"),
-                  labelPrevious: () => t("calendar.prevMonth"),
+                  labelNext: () => t("calendar.nextMonth", { ns: "common" }),
+                  labelPrevious: () =>
+                    t("calendar.prevMonth", { ns: "common" }),
                 }}
                 fromMonth={new Date(today.getFullYear(), startingMonth)}
                 toYear={today.getFullYear()}
@@ -70,7 +75,7 @@ export function ReservationForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{t("submitButton")}</Button>
       </form>
     </Form>
   );

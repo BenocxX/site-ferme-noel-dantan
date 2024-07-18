@@ -1,3 +1,5 @@
 {
-  "title": "Réservation"
+  "title": "Réservation d'autocueillette",
+  "information": "Il est important de réserver la date et l'heure pour votre autocueillette, 10 places disponibles aux 30 minutes. Pour informations supplémentaires, veuillez nous contacter au (450) 888-1958.",
+  "submitButton": "Reserver"
 }
