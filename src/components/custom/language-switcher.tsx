@@ -16,13 +16,17 @@ export function LanguageSwitcher({ className }: { className?: string }) {
     <Select value={currentLanguage} onValueChange={changeLanguage}>
       <SelectTrigger
         className={cn(
-          buttonVariants({ variant: "ghost", size: "icon" }),
-          "w-max border-none",
+          buttonVariants({
+            variant: "ghost",
+            size: "icon",
+            className: "bg-transparent",
+          }),
+          "w-max border-none hover:text-primary",
           className
         )}
         hideChevron
       >
-        <Languages size="20px" />
+        <Languages width="20px" height="20px" />
       </SelectTrigger>
       <SelectContent className="!w-16">
         {languages.map(({ value, label }) => (
