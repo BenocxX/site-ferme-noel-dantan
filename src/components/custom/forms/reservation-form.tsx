@@ -15,16 +15,17 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 const FormSchema = z.object({
-  date: z.date({
-    required_error: "A date is required.",
-  }),
+  date: z.date(),
 });
 
 export function ReservationForm() {
   const today = new Date();
   const startingMonth = 10;
+
+  const { t, i18n } = useTranslation();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -47,11 +48,10 @@ export function ReservationForm() {
                 className="rounded-md border"
                 mode="single"
                 selected={field.value}
-                locale={frCA}
-                // TODO: Localize the calendar correctly using i18next
+                locale={i18n.language === "fr" ? frCA : undefined}
                 labels={{
-                  labelNext: () => "Aller au mois suivant",
-                  labelPrevious: () => "Aller au mois précédent",
+                  labelNext: () => t("calendar.nextMonth"),
+                  labelPrevious: () => t("calendar.prevMonth"),
                 }}
                 fromMonth={new Date(today.getFullYear(), startingMonth)}
                 toYear={today.getFullYear()}

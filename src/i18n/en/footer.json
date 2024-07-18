@@ -1,3 +1,3 @@
 {
-  "copyright": "Copyright © 2024 - All right reserved by $t(companyName) and Konkat"
+  "copyright": "Copyright © 2024 - All right reserved by $t(companyName, {\"ns\": \"common\" }) and Konkat"
 }

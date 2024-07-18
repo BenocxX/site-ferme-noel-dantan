@@ -1,3 +1,7 @@
 {
-  "companyName": "Ferme Noël d'Antan"
+  "companyName": "Ferme Noël d'Antan",
+  "calendar": {
+    "prevMonth": "Go to previous month",
+    "nextMonth": "Go to next month"
+  }
 }
