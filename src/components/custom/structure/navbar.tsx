@@ -85,7 +85,7 @@ export function Navbar({
     <nav
       className={cn(
         "flex w-screen items-center justify-between bg-primary text-white bg-opacity-75 shadow-sm backdrop-blur gap-6 py-4 md:py-6 px-4 md:px-8 md:flex lg:gap-12",
-        className
+        className,
       )}
       {...props}
     >

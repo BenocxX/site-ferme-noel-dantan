@@ -22,7 +22,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
             className: "bg-transparent",
           }),
           "w-max border-none hover:text-primary",
-          className
+          className,
         )}
         hideChevron
       >
