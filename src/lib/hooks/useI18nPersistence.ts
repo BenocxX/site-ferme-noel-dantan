@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 /**
  * Hook to persist the language in localStorage
  */
 export function useI18nPersistence() {
-  const key = "i18nextLng";
+  const key = 'i18nextLng';
 
   const { i18n } = useTranslation();
 

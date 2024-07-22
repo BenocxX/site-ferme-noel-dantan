@@ -1,6 +1,7 @@
-import { buttonVariants } from "../../ui/button";
-import { useTranslation } from "react-i18next";
-import { getLinks } from "@/lib/links";
+import { buttonVariants } from '../../ui/button';
+import { useTranslation } from 'react-i18next';
+
+import { getLinks } from '@/lib/links';
 
 export function Footer() {
   const { t } = useTranslation();
@@ -8,17 +9,17 @@ export function Footer() {
   const links = getLinks();
 
   const iconButton = buttonVariants({
-    variant: "ghost",
-    size: "icon",
-    className: "aspect-square bg-transparent w-max border-none group",
+    variant: 'ghost',
+    size: 'icon',
+    className: 'aspect-square bg-transparent w-max border-none group',
   });
 
-  const svgClassName = "fill-white group-hover:fill-primary";
+  const svgClassName = 'fill-white group-hover:fill-primary';
 
   return (
-    <footer className="flex flex-col items-center justify-center gap-6 px-8 py-10 bg-primary text-white">
+    <footer className="flex flex-col items-center justify-center gap-6 bg-primary px-8 py-10 text-white">
       <div className="flex items-center gap-8">
-        {links.facebook.href !== "#" && (
+        {links.facebook.href !== '#' && (
           <a href={links.facebook.href} className={iconButton}>
             <svg
               className={svgClassName}
@@ -32,9 +33,7 @@ export function Footer() {
           </a>
         )}
       </div>
-      <div className="text-center text-sm opacity-50">
-        {t("copyright", { ns: "footer" })}
-      </div>
+      <div className="text-center text-sm opacity-50">{t('copyright', { ns: 'footer' })}</div>
     </footer>
   );
 }

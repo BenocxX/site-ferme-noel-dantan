@@ -1,12 +1,13 @@
-import { cn } from "@/lib/utils";
-import { Languages } from "lucide-react";
-import { buttonVariants } from "../ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger } from "../ui/select";
-import { useI18nPersistence } from "@/lib/hooks/useI18nPersistence";
+import { buttonVariants } from '../ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger } from '../ui/select';
+import { Languages } from 'lucide-react';
+
+import { useI18nPersistence } from '@/lib/hooks/useI18nPersistence';
+import { cn } from '@/lib/utils';
 
 const languages = [
-  { value: "en", label: "English" },
-  { value: "fr", label: "Français" },
+  { value: 'en', label: 'English' },
+  { value: 'fr', label: 'Français' },
 ];
 
 export function LanguageSwitcher({ className }: { className?: string }) {
@@ -17,12 +18,12 @@ export function LanguageSwitcher({ className }: { className?: string }) {
       <SelectTrigger
         className={cn(
           buttonVariants({
-            variant: "ghost",
-            size: "icon",
-            className: "bg-transparent",
+            variant: 'ghost',
+            size: 'icon',
+            className: 'bg-transparent',
           }),
-          "w-max border-none hover:text-primary",
-          className,
+          'w-max border-none hover:text-primary',
+          className
         )}
         hideChevron
       >
@@ -30,11 +31,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
       </SelectTrigger>
       <SelectContent className="!w-16">
         {languages.map(({ value, label }) => (
-          <SelectItem
-            value={value}
-            key={value}
-            onClick={() => changeLanguage(value)}
-          >
+          <SelectItem value={value} key={value} onClick={() => changeLanguage(value)}>
             {label}
           </SelectItem>
         ))}

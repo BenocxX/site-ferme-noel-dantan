@@ -1,4 +1,4 @@
-import { app } from "@azure/functions";
+import { app } from '@azure/functions';
 
 app.setup({
   enableHttpStream: true,
