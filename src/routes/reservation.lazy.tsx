@@ -16,7 +16,7 @@ function Reservation() {
 
   return (
     <div className="container my-16 flex h-[80vh] w-screen items-center justify-center">
-      <div className="relative h-full flex-1 overflow-y-hidden">
+      <div className="relative h-full overflow-hidden">
         <img
           className="h-full rounded-xl object-cover shadow"
           src={FamilleAnimal}
