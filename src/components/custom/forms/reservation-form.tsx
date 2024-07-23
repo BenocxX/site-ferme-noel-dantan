@@ -45,7 +45,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
         className={cn('space-y-8', className)}
         {...formProps}
       >
-        <div className="flex gap-4">
+        <div className="flex flex-col items-center gap-4 lg:flex-row lg:items-start">
           <FormField
             control={form.control}
             name="date"
@@ -88,7 +88,9 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
             </div>
           </div>
         </div>
-        <Button type="submit">{t('submitButton')}</Button>
+        <Button type="submit" className="w-full lg:w-max">
+          {t('submitButton')}
+        </Button>
       </form>
     </Form>
   );
