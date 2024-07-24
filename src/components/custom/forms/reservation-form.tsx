@@ -1,5 +1,6 @@
 import { Locale, formatDate } from 'date-fns';
 import { frCA } from 'date-fns/locale';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
@@ -29,7 +30,7 @@ import { cn } from '@/lib/utils';
 
 const FormSchema = z.object({
   date: z.date(),
-  time: z.number(),
+  time: z.coerce.number(),
 });
 
 export function ReservationForm({ className, ...formProps }: React.ComponentProps<'form'>) {
@@ -52,7 +53,9 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
   const selectedDate = form.watch('date');
 
   const availableThirtyMinuteBlocks = getAvailableThirtyMinuteBlock(selectedDate);
-  form.setValue('time', availableThirtyMinuteBlocks.filter((block) => !block.isFull())[0].id);
+  useEffect(() => {
+    form.setValue('time', availableThirtyMinuteBlocks.filter((block) => !block.isFull())[0].id);
+  }, [availableThirtyMinuteBlocks, form]);
 
   function onSubmit() {
     toast('Form submitted');
@@ -113,7 +116,10 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Time</FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value.toString()}>
+                  <Select
+                    onValueChange={field.onChange}
+                    value={field.value ? field.value.toString() : undefined}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a valid time of the day" />
