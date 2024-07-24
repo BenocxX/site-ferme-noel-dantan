@@ -1,0 +1,16 @@
+{
+  "platform": {
+    "apiRuntime": "node:18"
+  },
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "mimeTypes": {
+    ".json": "text/json",
+    ".jsx": "application/javascript",
+    ".tsx": "application/javascript",
+    ".js": "application/javascript",
+    ".mjs": "application/javascript",
+    ".ts": "application/javascript"
+  }
+}
