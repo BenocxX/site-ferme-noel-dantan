@@ -74,7 +74,6 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                {/* <FormLabel>Date</FormLabel> */}
                 <Calendar
                   required
                   className="w-max rounded-md border"
