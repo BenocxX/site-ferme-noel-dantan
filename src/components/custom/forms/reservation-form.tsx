@@ -8,7 +8,6 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Link } from '@tanstack/react-router';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -16,7 +15,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -31,13 +29,33 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
+import { Namespaces } from '@/i18n/i18n';
 import { cn } from '@/lib/utils';
+
+const rules: {
+  id: number;
+  i18nKey: keyof Namespaces['reservation']['rules'];
+}[] = [
+  {
+    id: 0,
+    i18nKey: 'noAnimals',
+  },
+  {
+    id: 1,
+    i18nKey: 'cashOnly',
+  },
+];
 
 const FormSchema = z.object({
   date: z.date(),
   time: z.coerce.number(),
-  noAnimalCheckbox: z.boolean(),
-  liquidMoneyCheckbox: z.boolean(),
+  acceptedRules: z
+    .array(z.number())
+    .refine((acceptedRules) => rules.every((rule) => acceptedRules.includes(rule.id)), {
+      params: {
+        i18n: { key: 'all_rules_required' },
+      },
+    }),
 });
 
 export function ReservationForm({ className, ...formProps }: React.ComponentProps<'form'>) {
@@ -55,6 +73,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
     resolver: zodResolver(FormSchema),
     defaultValues: {
       date: firstAvailableDate,
+      acceptedRules: [],
     },
   });
 
@@ -65,7 +84,8 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
     form.setValue('time', availableThirtyMinuteBlocks.filter((block) => !block.isFull())[0].id);
   }, [availableThirtyMinuteBlocks, form]);
 
-  function onSubmit() {
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log(data);
     toast('Form submitted');
   }
 
@@ -154,37 +174,49 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                 )}
               />
               <div className="flex flex-col gap-2 rounded-md border px-4 pb-4 pt-2">
-                <h4 className="text-lg">Règlements:</h4>
-                <div className="flex flex-col gap-4">
-                  <FormField
-                    control={form.control}
-                    name="noAnimalCheckbox"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl>
-                          <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                        </FormControl>
-                        <div className="space-y-1 leading-none">
-                          <FormLabel>Je ne vais pas amener d&apos;animaux avec moi</FormLabel>
-                        </div>
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="liquidMoneyCheckbox"
-                    render={({ field }) => (
-                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl>
-                          <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                        </FormControl>
-                        <div className="space-y-1 leading-none">
-                          <FormLabel>Je vais payer en argent comptant</FormLabel>
-                        </div>
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="acceptedRules"
+                  render={() => (
+                    <FormItem>
+                      <div className="mb-4">
+                        <FormLabel className="text-base">Règlements</FormLabel>
+                      </div>
+                      {rules.map((rule) => (
+                        <FormField
+                          key={rule.id}
+                          control={form.control}
+                          name="acceptedRules"
+                          render={({ field }) => {
+                            return (
+                              <FormItem
+                                key={rule.id}
+                                className="flex flex-row items-start space-x-3 space-y-0"
+                              >
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value?.includes(rule.id)}
+                                    onCheckedChange={(checked) => {
+                                      return checked
+                                        ? field.onChange([...field.value, rule.id])
+                                        : field.onChange(
+                                            field.value?.filter((value) => value !== rule.id)
+                                          );
+                                    }}
+                                  />
+                                </FormControl>
+                                <FormLabel className="font-normal">
+                                  {t(`rules.${rule.i18nKey}` as const)}
+                                </FormLabel>
+                              </FormItem>
+                            );
+                          }}
+                        />
+                      ))}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
               <Button type="submit" className="w-full">
                 {t('submitButton')}

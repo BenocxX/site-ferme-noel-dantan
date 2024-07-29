@@ -15,13 +15,13 @@ import { useTranslation } from 'react-i18next';
 import { Close as SheetClose } from '@radix-ui/react-dialog';
 import { Link } from '@tanstack/react-router';
 
-import { resources } from '@/i18n/i18n';
+import { Namespaces } from '@/i18n/i18n';
 import { cn } from '@/lib/utils';
 
 import { Footer } from './footer';
 
 const links: {
-  i18nKey: keyof (typeof resources)['en']['navbar'];
+  i18nKey: keyof Namespaces['navbar'];
   id?: string;
   offset?: number;
   href?: string;

@@ -12,6 +12,8 @@ export const resources = {
   fr: frTranslations,
 } as const;
 
+export type Namespaces = (typeof resources)['en'];
+
 i18next.use(initReactI18next).init({
   lng: 'fr',
   fallbackLng: 'en',

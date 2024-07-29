@@ -1,3 +1,4 @@
 {
-  "required": "Obligatoire"
+  "required": "Obligatoire",
+  "all_rules_required": "Vous devez accepter toutes les règles"
 }

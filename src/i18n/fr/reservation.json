@@ -1,5 +1,9 @@
 {
   "title": "Réservation d'autocueillette",
   "information": "Il est important de réserver la date et l'heure pour votre autocueillette. 10 places de stationnement sont disponibles pour chaque tranche de 30 minutes. Pour plus d'informations, veuillez nous contacter au <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
+  "rules": {
+    "noAnimals": "Je ne vais pas amener d'animaux avec moi",
+    "cashOnly": "Je vais payer en argent comptant"
+  },
   "submitButton": "Reserver"
 }
