@@ -1,5 +1,5 @@
 {
   "title": "Reservation for self-picking",
-  "information": "It is important to reserve the date and time for your self-picking, 10 places available every 30 minutes. For additional information, please contact us at (450) 888-1958.",
+  "information": "It is important to reserve the date and time for your self-picking. 10 parking spaces are available for each 30-minute slot. For more information, please contact us at <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
   "submitButton": "Reserve"
 }

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { createLazyFileRoute } from '@tanstack/react-router';
 
@@ -29,7 +29,14 @@ function Reservation() {
       <div className="flex h-full flex-1 flex-col px-8 py-4 max-lg:my-4 lg:min-w-[800px]">
         <h1 className="mb-6 text-center text-5xl lg:mb-4 lg:text-left">{t('title')}</h1>
         <p className="mb-12 text-center text-muted-foreground lg:mb-8 lg:text-left">
-          {t('information')}
+          {/* Ref: https://react.i18next.com/latest/trans-component#alternative-usage-which-lists-the-components-v11.6.0 */}
+          <Trans
+            t={t}
+            i18nKey="information"
+            components={{
+              phoneLink: <a className="text-primary" />,
+            }}
+          />
         </p>
         <ReservationForm className="flex-1 space-y-4" />
       </div>

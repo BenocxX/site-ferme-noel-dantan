@@ -1,5 +1,11 @@
 {
   "companyName": "Ferme Noël d'Antan",
+  "contact": {
+    "phone": {
+      "compact": "4505462516",
+      "formatted": "(450) 546-2516"
+    }
+  },
   "calendar": {
     "prevMonth": "Go to previous month",
     "nextMonth": "Go to next month"

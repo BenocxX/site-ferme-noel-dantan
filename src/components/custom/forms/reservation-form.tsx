@@ -102,7 +102,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
               </FormItem>
             )}
           />
-          <div className="flex flex-col gap-4 lg:w-full">
+          <div className="flex flex-col gap-2 lg:w-full">
             <h3 className="flex items-center gap-2 text-2xl">
               {displayFormattedDate(selectedDate, getLocaleFromLanguage(i18n.language))}
               <Popover>
@@ -119,38 +119,43 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                 </PopoverContent>
               </Popover>
             </h3>
-            <FormField
-              control={form.control}
-              name="time"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Time</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value ? field.value.toString() : undefined}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a valid time of the day" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {availableThirtyMinuteBlocks
-                        .filter((block) => !block.isFull())
-                        .map((block, i) => (
-                          <SelectItem key={i} value={block.id.toString()}>
-                            {displayFormattedTime(block.date, getLocaleFromLanguage(i18n.language))}
-                          </SelectItem>
-                        ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full">
-              {t('submitButton')}
-            </Button>
+            <div className="flex flex-col gap-4">
+              <FormField
+                control={form.control}
+                name="time"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Time</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      value={field.value ? field.value.toString() : undefined}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a valid time of the day" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {availableThirtyMinuteBlocks
+                          .filter((block) => !block.isFull())
+                          .map((block, i) => (
+                            <SelectItem key={i} value={block.id.toString()}>
+                              {displayFormattedTime(
+                                block.date,
+                                getLocaleFromLanguage(i18n.language)
+                              )}
+                            </SelectItem>
+                          ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full">
+                {t('submitButton')}
+              </Button>
+            </div>
           </div>
         </div>
       </form>
