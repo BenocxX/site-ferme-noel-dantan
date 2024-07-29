@@ -156,22 +156,6 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                       {getPMReservationCount(availableThirtyMinuteBlocks)}
                     </Badge>
                   </div>
-                  {/* <div className="mt-1 flex w-full flex-col gap-2">
-                    <Badge
-                      variant="secondary"
-                      className="w-full justify-center gap-2 rounded-md py-2"
-                    >
-                      <Sunrise height="20px" />
-                      {getAMReservationCount(availableThirtyMinuteBlocks)}
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="w-full justify-center gap-2 rounded-md py-2"
-                    >
-                      <Sunset height="20px" />
-                      {getPMReservationCount(availableThirtyMinuteBlocks)}
-                    </Badge>
-                  </div> */}
                 </PopoverContent>
               </Popover>
             </h3>
