@@ -39,11 +39,12 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
   const { t, i18n } = useTranslation('reservation');
 
   const today = new Date();
-  const startingMonth = 10;
+  const startingDate = new Date(today.getFullYear(), 10, 23);
+  const endDate = new Date(today.getFullYear(), 11, 24);
 
   // TODO: Write logic to pick the first available date
   // TODO: Handle case where there are no available dates
-  const firstAvailableDate = new Date(today.getFullYear(), startingMonth);
+  const firstAvailableDate = today > startingDate ? today : startingDate;
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -76,7 +77,6 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                {/* <FormLabel>Date</FormLabel> */}
                 <Calendar
                   required
                   className="w-max rounded-md border"
@@ -87,15 +87,11 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                     labelNext: () => t('calendar.nextMonth', { ns: 'common' }),
                     labelPrevious: () => t('calendar.prevMonth', { ns: 'common' }),
                   }}
-                  fromMonth={new Date(today.getFullYear(), startingMonth)}
+                  defaultMonth={today > startingDate ? today : startingDate}
+                  fromMonth={today > startingDate ? today : startingDate}
                   toYear={today.getFullYear()}
-                  defaultMonth={
-                    today.getMonth() < startingMonth
-                      ? new Date(today.getFullYear(), startingMonth)
-                      : today
-                  }
+                  disabled={(date) => date < today || date < startingDate || date > endDate}
                   onSelect={field.onChange}
-                  disabled={(date) => date < today || date.getMonth() < startingMonth}
                   initialFocus
                 />
                 <FormMessage />
@@ -178,10 +174,15 @@ function displayFormattedTime(date: Date, locale?: Locale) {
 
 function getAvailableThirtyMinuteBlock(date: Date): ThirtyMinuteBlock[] {
   const times: ThirtyMinuteBlock[] = [];
-  for (let i = 8; i < 17; i++) {
-    if (i === 12) continue;
-    for (let j = 0; j < 60; j += 30) {
-      const tempDate = new Date(date.setHours(i, j, 0, 0));
+
+  const startingHour = 8; // 8:00 AM
+  const dinerHour = 12; // 12:00 PM
+  const endingHour = 15.5; // 15:30 PM
+
+  for (let hour = startingHour; hour < endingHour; hour++) {
+    if (hour === dinerHour) continue;
+    for (let halfHour = 0; halfHour <= 0.5; halfHour += 0.5) {
+      const tempDate = new Date(date.setHours(hour, halfHour * 60, 0, 0));
       const randomNumberOfReservations = Math.floor(Math.random() * 31) + 15;
       const block = new ThirtyMinuteBlock(times.length + 1, tempDate, randomNumberOfReservations);
       times.push(block);
