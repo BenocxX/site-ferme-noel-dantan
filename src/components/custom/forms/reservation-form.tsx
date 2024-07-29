@@ -1,5 +1,6 @@
 import { Locale, formatDate } from 'date-fns';
 import { frCA } from 'date-fns/locale';
+import { Info } from 'lucide-react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +19,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import {
   Select,
   SelectContent,
@@ -101,15 +103,22 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
             )}
           />
           <div className="flex flex-col gap-4 lg:w-full">
-            <h3 className="text-2xl">
+            <h3 className="flex items-center gap-2 text-2xl">
               {displayFormattedDate(selectedDate, getLocaleFromLanguage(i18n.language))}
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" size="icon" type="button">
+                    <Info />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="flex w-max flex-col">
+                  {/* TODO: Make better design */}
+                  <h5>Nombre de réservation:</h5>
+                  <span>Avant-midi: {getAMReservationCount(availableThirtyMinuteBlocks)}</span>
+                  <span>Après-midi: {getPMReservationCount(availableThirtyMinuteBlocks)}</span>
+                </PopoverContent>
+              </Popover>
             </h3>
-            <div className="flex flex-col">
-              <h5>Nombre de réservation:</h5>
-              <span>Avant-midi: {getAMReservationCount(availableThirtyMinuteBlocks)}</span>
-              <span>Après-midi: {getPMReservationCount(availableThirtyMinuteBlocks)}</span>
-            </div>
-
             <FormField
               control={form.control}
               name="time"
@@ -139,11 +148,11 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                 </FormItem>
               )}
             />
+            <Button type="submit" className="w-full">
+              {t('submitButton')}
+            </Button>
           </div>
         </div>
-        <Button type="submit" className="!mt-8 w-full lg:!mt-4 lg:w-max">
-          {t('submitButton')}
-        </Button>
       </form>
     </Form>
   );
