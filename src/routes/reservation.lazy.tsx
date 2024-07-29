@@ -42,12 +42,8 @@ function Reservation() {
         </p>
         <Alert variant="warning" className="mb-4">
           <TriangleAlert className="h-4 w-4" />
-          <AlertTitle>Animaux interdis & argent comptant seulement</AlertTitle>
-          <AlertDescription>
-            Pour des raisons de sécurité, les animaux ne sont pas permis sur le site. De plus, nous
-            n&apos;acceptons que l&apos;argent comptant, alors assurez-vous d&apos;en avoir
-            suffisamment avec vous.
-          </AlertDescription>
+          <AlertTitle>{t('rulesAlert.title')}</AlertTitle>
+          <AlertDescription>{t('rulesAlert.content')}</AlertDescription>
         </Alert>
         <ReservationForm className="flex-1 space-y-4" />
       </div>
