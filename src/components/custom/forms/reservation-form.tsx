@@ -1,6 +1,6 @@
 import { Locale, formatDate } from 'date-fns';
 import { frCA } from 'date-fns/locale';
-import { Info } from 'lucide-react';
+import { Info, Sunrise, Sunset } from 'lucide-react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import { z } from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -128,15 +129,49 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
               {displayFormattedDate(selectedDate, getLocaleFromLanguage(i18n.language))}
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="ghost" size="icon" type="button">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    type="button"
+                    className="text-muted-foreground"
+                  >
                     <Info />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="flex w-max flex-col">
-                  {/* TODO: Make better design */}
-                  <h5>Nombre de réservation:</h5>
-                  <span>Avant-midi: {getAMReservationCount(availableThirtyMinuteBlocks)}</span>
-                  <span>Après-midi: {getPMReservationCount(availableThirtyMinuteBlocks)}</span>
+                <PopoverContent className="flex w-max max-w-[132px] flex-col overflow-hidden py-2">
+                  <h5 className="text-center text-sm">{t('statsTitle')}</h5>
+                  <div className="mt-1 flex w-full justify-between">
+                    <Badge
+                      variant="secondary"
+                      className="w-max flex-col gap-1 rounded-lg pb-2 pt-3"
+                    >
+                      <Sunrise height="20px" />
+                      {getAMReservationCount(availableThirtyMinuteBlocks)}
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="w-max flex-col gap-1 rounded-lg pb-2 pt-3"
+                    >
+                      <Sunset height="20px" />
+                      {getPMReservationCount(availableThirtyMinuteBlocks)}
+                    </Badge>
+                  </div>
+                  {/* <div className="mt-1 flex w-full flex-col gap-2">
+                    <Badge
+                      variant="secondary"
+                      className="w-full justify-center gap-2 rounded-md py-2"
+                    >
+                      <Sunrise height="20px" />
+                      {getAMReservationCount(availableThirtyMinuteBlocks)}
+                    </Badge>
+                    <Badge
+                      variant="secondary"
+                      className="w-full justify-center gap-2 rounded-md py-2"
+                    >
+                      <Sunset height="20px" />
+                      {getPMReservationCount(availableThirtyMinuteBlocks)}
+                    </Badge>
+                  </div> */}
                 </PopoverContent>
               </Popover>
             </h3>

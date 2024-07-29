@@ -1,6 +1,7 @@
 {
   "title": "Reservation for self-picking",
   "information": "It is important to reserve the date and time for your self-picking. 10 parking spaces are available for each 30-minute slot. For more information, please contact us at <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
+  "statsTitle": "Number of reservations:",
   "rules": {
     "noAnimals": "I will not bring any animals with me",
     "cashOnly": "I will pay in cash"
