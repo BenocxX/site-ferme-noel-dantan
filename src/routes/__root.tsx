@@ -1,7 +1,7 @@
+import React, { Suspense } from 'react';
 import { Toaster } from 'sonner';
 
 import { Outlet, createRootRoute } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 import { Footer } from '@/components/custom/structure/footer';
 import { Navbar } from '@/components/custom/structure/navbar';
@@ -27,7 +27,22 @@ function Root() {
         <Toaster position="top-right" />
         {/* <CookieConsent /> */}
       </div>
-      <TanStackRouterDevtools />
+      <Suspense>
+        <TanStackRouterDevtools />
+      </Suspense>
     </>
   );
 }
+
+// Only render the devtools in development
+const TanStackRouterDevtools =
+  process.env.NODE_ENV === 'production'
+    ? () => null // Render nothing in production
+    : React.lazy(() =>
+        // Lazy load in development
+        import('@tanstack/router-devtools').then((res) => ({
+          default: res.TanStackRouterDevtools,
+          // For Embedded Mode
+          // default: res.TanStackRouterDevtoolsPanel
+        }))
+      );
