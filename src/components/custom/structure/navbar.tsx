@@ -27,6 +27,10 @@ const links: {
   href?: string;
 }[] = [
   {
+    i18nKey: 'home',
+    href: '/',
+  },
+  {
     i18nKey: 'reservation',
     href: '/reservation',
   },
