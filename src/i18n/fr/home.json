@@ -1,0 +1,15 @@
+{
+  "ctaButton": "Réservez votre sapin",
+  "heroSection": {
+    "title": {
+      "line1": "Cueillez",
+      "line2": "votre sapin",
+      "line3": "vous-même"
+    },
+    "description": "Venez choisir et couper votre sapin de Noël!"
+  },
+  "facebookSection": {
+    "title": "Rejoignez-nous sur Facebook!",
+    "description": "Suivez-nous sur Facebook pour rester informé de nos dernières actualités et événements."
+  }
+}

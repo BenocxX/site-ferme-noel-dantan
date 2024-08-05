@@ -1,0 +1,15 @@
+{
+  "ctaButton": "Reserve your tree",
+  "heroSection": {
+    "title": {
+      "line1": "Pick",
+      "line2": "your own",
+      "line3": "Christmas tree"
+    },
+    "description": "Come choose and cut your own Christmas tree!"
+  },
+  "facebookSection": {
+    "title": "Join us on Facebook!",
+    "description": "Follow us on Facebook to stay up to date with our latest news and events."
+  }
+}
