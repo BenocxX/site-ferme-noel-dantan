@@ -70,13 +70,13 @@ function FacebookSection() {
 
   return (
     <section className="flex w-full flex-col items-center gap-6 py-24">
-      <div className="flex w-[400px] flex-col gap-2 text-center md:w-[500px]">
+      <div className="flex w-[350px] flex-col gap-2 text-center md:w-[500px]">
         <h3 className="text-3xl md:text-4xl">{t('facebookSection.title')}</h3>
         <p>{t('facebookSection.description')}</p>
       </div>
       <FacebookEmbeddedPage
         pageName="fermenoeldantan"
-        width={isMobile ? 400 : 500}
+        width={isMobile ? 350 : 500}
         height={550}
         className="rounded"
       />
