@@ -1,9 +1,9 @@
 {
-  "redirects": [
+  "routes": [
     {
-      "source": "/reservation",
-      "destination": "/",
-      "statusCode": 200
+      "src": "/reservation",
+      "dest": "/",
+      "status": 200
     }
   ]
 }
