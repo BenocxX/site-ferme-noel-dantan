@@ -1,4 +1,5 @@
 src/*.gen.*
+.env
 
 # Logs
 logs
