@@ -20,3 +20,23 @@ model User {
   name  String?
 }
 
+model HalfHour {
+  id    Int     @id @default(autoincrement())
+  period String  @unique
+  reservations Reservation[]
+}
+
+model OpenDate {
+  id    Int     @id @default(autoincrement())
+  date DateTime  @unique
+  reservations Reservation[]
+}
+
+model Reservation {
+  id    Int     @id @default(autoincrement())
+  halfHourId Int
+  openDateId Int
+  halfHour HalfHour @relation(fields: [halfHourId], references: [id], onDelete: Cascade)
+  openDate OpenDate @relation(fields: [openDateId], references: [id], onDelete: Cascade)
+}
+
