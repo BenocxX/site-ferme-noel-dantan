@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "HalfHour" ALTER COLUMN "period" SET DATA TYPE TEXT;

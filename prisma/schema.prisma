@@ -22,7 +22,7 @@ model User {
 
 model HalfHour {
   id    Int     @id @default(autoincrement())
-  period DateTime  @unique
+  period String  @unique
   reservations Reservation[]
 }
 
