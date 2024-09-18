@@ -1,20 +1,20 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
-
-function json(content) {
+export function json(content) {
   return new Response(JSON.stringify(content), {
     headers: { 'Content-Type': 'application/json' },
   });
 }
 
-function getParams(request) {
+export function getParams(request) {
   return new URL(request.url).searchParams;
 }
 
-function getParam(request, key) {
+export function getParam(request, key) {
   return getParams(request).get(key);
 }
+
+const prisma = new PrismaClient();
 
 export async function GET(request) {
   const dateId = getParam(request, 'dateId');

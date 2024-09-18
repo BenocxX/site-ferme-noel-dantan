@@ -30,6 +30,7 @@ model Reservation {
   id         Int      @id @default(autoincrement())
   halfHourId Int
   openDateId Int
+  count      Int
   halfHour   HalfHour @relation(fields: [halfHourId], references: [id])
   openDate   OpenDate @relation(fields: [openDateId], references: [id])
 }
