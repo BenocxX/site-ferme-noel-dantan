@@ -37,6 +37,7 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "tsx": "^4.19.1",
     "vite": "^5.3.1",
     "zod": "^3.23.8",
     "zod-i18n-map": "^2.27.0"
@@ -63,5 +64,8 @@
     "prisma": "^5.19.1",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }
