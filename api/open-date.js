@@ -24,10 +24,16 @@ const prisma = new PrismaClient();
 /**
  * Returns all open dates with available reservation spots.
  */
-export async function GET(request) {
-  // TODO: Check for current year only
+export async function GET() {
+  const today = new Date();
+  const endOfYear = new Date(today.getFullYear(), 11, 31);
+
   const openDates = await prisma.openDate.findMany({
     where: {
+      date: {
+        gte: today,
+        lt: endOfYear,
+      },
       reservations: {
         some: {
           count: {
@@ -36,7 +42,29 @@ export async function GET(request) {
         },
       },
     },
+    include: {
+      reservations: true,
+    },
+    orderBy: {
+      date: 'asc',
+    },
   });
 
-  return json(openDates);
+  const openDatesWithTotalAMPM = openDates.map((openDate) => {
+    const totalAM = openDate.reservations
+      .filter((reservation) => reservation.halfHourId <= 7)
+      .reduce((acc, curr) => acc + curr.count, 0);
+    const totalPM = openDate.reservations
+      .filter((reservation) => reservation.halfHourId > 7)
+      .reduce((acc, curr) => acc + curr.count, 0);
+
+    return {
+      id: openDate.id,
+      date: openDate.date,
+      totalAM,
+      totalPM,
+    };
+  });
+
+  return json(openDatesWithTotalAMPM);
 }

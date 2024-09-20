@@ -1,3 +1,5 @@
+import { z } from 'zod';
+
 import { PrismaClient } from '@prisma/client';
 
 export function json(content, init = {}) {
@@ -29,12 +31,33 @@ export async function GET(request) {
 
   // TODO: Check if dateId is valid
 
+  const result = z.coerce.number().safeParse(dateId);
+  if (result.error) {
+    return json({ error: 'Invalid dateId' }, { status: 400 });
+  }
+
+  const date = await prisma.openDate.findFirst({
+    where: {
+      id: result.data,
+    },
+  });
+
+  if (!date) {
+    return json({ error: 'Date not found' }, { status: 404 });
+  }
+
   const reservations = await prisma.reservation.findMany({
     where: {
-      openDateId: parseInt(dateId),
+      openDateId: result.data,
       count: {
         lt: 10,
       },
+    },
+    orderBy: {
+      halfHourId: 'asc',
+    },
+    include: {
+      halfHour: true,
     },
   });
 
