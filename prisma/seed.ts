@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
   // const halfHoursStrings = [
@@ -18,7 +18,6 @@ async function main() {
   //   "15:00",
   //   "15:30",
   // ]
-
   // let halfHourId = 1;
   // for (const halfHour of halfHoursStrings) {
   //   await prisma.halfHour.upsert({
@@ -30,10 +29,8 @@ async function main() {
   //   })
   //   halfHourId++;
   // }
-
   // const startDate = new Date(2024, 10, 22)
   // const endDate = new Date(2024, 11, 24)
-
   // for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
   //   await prisma.openDate.upsert({
   //     where: { date },
@@ -43,10 +40,8 @@ async function main() {
   //     },
   //   })
   // }
-
   // const openDates = await prisma.openDate.findMany()
   // const halfHours = await prisma.halfHour.findMany()
-
   // for (const openDate of openDates) {
   //   for (const halfHour of halfHours) {
   //     const reservation = await prisma.reservation.findFirst({
@@ -55,11 +50,9 @@ async function main() {
   //         halfHourId: halfHour.id,
   //       },
   //     })
-
   //     if (reservation) {
   //       continue
   //     }
-
   //     await prisma.reservation.create({
   //       data: {
   //         openDateId: openDate.id,
@@ -72,10 +65,10 @@ async function main() {
 }
 main()
   .then(async () => {
-    await prisma.$disconnect()
+    await prisma.$disconnect();
   })
   .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });

@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  database:
+    build:
+      dockerfile: ./Docker/PostgreSQL/Dockerfile
+    container_name: 'ferme-noel-dantan-postgresql'
+    restart: 'always'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: 'ferme-noel-dantan-postgresql'
+      POSTGRES_USER: 'dev'
+      POSTGRES_PASSWORD: 'dev'
