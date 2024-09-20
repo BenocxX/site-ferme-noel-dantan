@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Toaster } from 'sonner';
 
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 
 import { Footer } from '@/components/custom/structure/footer';
@@ -30,6 +31,7 @@ function Root() {
       <Suspense>
         <TanStackRouterDevtools />
       </Suspense>
+      <ReactQueryDevtools />
     </>
   );
 }

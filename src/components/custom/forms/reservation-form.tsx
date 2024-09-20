@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -62,6 +63,18 @@ const FormSchema = z.object({
 export function ReservationForm({ className, ...formProps }: React.ComponentProps<'form'>) {
   const { t, i18n } = useTranslation('reservation');
 
+  const openDatesQuery = useQuery({
+    queryKey: ['open-date'],
+    queryFn: async () => {
+      const res = await fetch('/api/open-date');
+      const openDates = (await res.json()) as { id: number; date: string }[];
+      return openDates.map((openDate) => ({
+        id: openDate.id,
+        date: new Date(openDate.date),
+      }));
+    },
+  });
+
   const today = new Date();
   const startingDate = new Date(today.getFullYear(), 10, 23);
   const endDate = new Date(today.getFullYear(), 11, 24);
@@ -103,23 +116,49 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
             name="date"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <Calendar
-                  required
-                  className="w-max rounded-md border"
-                  mode="single"
-                  selected={field.value}
-                  locale={i18n.language === 'fr' ? frCA : undefined}
-                  labels={{
-                    labelNext: () => t('calendar.nextMonth', { ns: 'common' }),
-                    labelPrevious: () => t('calendar.prevMonth', { ns: 'common' }),
-                  }}
-                  defaultMonth={today > startingDate ? today : startingDate}
-                  fromMonth={today > startingDate ? today : startingDate}
-                  toYear={today.getFullYear()}
-                  disabled={(date) => date < today || date < startingDate || date > endDate}
-                  onSelect={field.onChange}
-                  initialFocus
-                />
+                {openDatesQuery.isSuccess ? (
+                  <Calendar
+                    required
+                    className="w-max rounded-md border"
+                    mode="single"
+                    selected={field.value}
+                    locale={i18n.language === 'fr' ? frCA : undefined}
+                    labels={{
+                      labelNext: () => t('calendar.nextMonth', { ns: 'common' }),
+                      labelPrevious: () => t('calendar.prevMonth', { ns: 'common' }),
+                    }}
+                    defaultMonth={today > startingDate ? today : startingDate}
+                    fromMonth={today > startingDate ? today : startingDate}
+                    toYear={today.getFullYear()}
+                    disabled={(calendarDate) => {
+                      const isDateOpen = openDatesQuery.data?.some(
+                        (date) =>
+                          date.date.toLocaleDateString('en-US') ===
+                          calendarDate.toLocaleDateString('en-US')
+                      );
+                      return !isDateOpen;
+                    }}
+                    onSelect={field.onChange}
+                    initialFocus
+                  />
+                ) : (
+                  <Calendar
+                    required
+                    className="w-max rounded-md border"
+                    mode="single"
+                    locale={i18n.language === 'fr' ? frCA : undefined}
+                    labels={{
+                      labelNext: () => t('calendar.nextMonth', { ns: 'common' }),
+                      labelPrevious: () => t('calendar.prevMonth', { ns: 'common' }),
+                    }}
+                    defaultMonth={today > startingDate ? today : startingDate}
+                    fromMonth={today > startingDate ? today : startingDate}
+                    toYear={today.getFullYear()}
+                    disabled={() => true} // Disable all dates until we have the data
+                    onSelect={field.onChange}
+                    initialFocus
+                  />
+                )}
                 <FormMessage />
               </FormItem>
             )}
