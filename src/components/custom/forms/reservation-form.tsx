@@ -162,7 +162,14 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                       return !isDateOpen;
                     }}
                     onSelect={(e) => {
-                      field.onChange(e);
+                      // field.onChange(e);
+                      const id = openDatesQuery.data?.find(
+                        (date) =>
+                          date.date.toLocaleDateString('en-US') === e?.toLocaleDateString('en-US')
+                      )?.id;
+                      if (id) {
+                        form.setValue('date', id);
+                      }
                     }}
                     initialFocus
                   />
