@@ -1,4 +1,5 @@
 {
   "required": "Obligatoire",
+  "time_required": "Sélectionnez une heure pour la réservation",
   "all_rules_required": "Vous devez accepter toutes les règles"
 }

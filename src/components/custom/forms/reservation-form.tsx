@@ -70,7 +70,14 @@ const rules: {
 
 const FormSchema = z.object({
   date: z.number(),
-  time: z.coerce.number(),
+  time: z.coerce
+    .number()
+    .optional()
+    .refine((time) => time ?? -1 >= 0, {
+      params: {
+        i18n: { key: 'time_required' },
+      },
+    }),
   acceptedRules: z
     .array(z.number())
     .refine((acceptedRules) => rules.every((rule) => acceptedRules.includes(rule.id)), {
@@ -112,7 +119,10 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
 
   useEffect(() => {
     setSelectedOpenDate(earliestDate);
-  }, [earliestDate]);
+    if (earliestDate) {
+      form.setValue('date', earliestDate?.id);
+    }
+  }, [earliestDate, form]);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
@@ -311,7 +321,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                       )}
                     />
                   </div>
-                  <Button type="submit" className="w-full">
+                  <Button type="submit" className="w-full shadow-md">
                     {t('submitButton')}
                   </Button>
                 </div>
