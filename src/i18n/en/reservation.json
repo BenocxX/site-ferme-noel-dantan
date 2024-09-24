@@ -6,6 +6,10 @@
     "content": "For safety reasons, animals are not allowed on the site. In addition, we only accept cash, so make sure you have enough with you."
   },
   "statsTitle": "Number of reservations:",
+  "timeOfReservation": {
+    "label": "Time of reservation",
+    "placeholder": "Select a time"
+  },
   "rules": {
     "noAnimals": "I will not bring any animals with me",
     "cashOnly": "I will pay in cash"

@@ -40,7 +40,7 @@ function Reservation() {
             }}
           />
         </p>
-        <Alert variant="warning" className="mb-4">
+        <Alert variant="warning" className="mb-4 border-0 shadow">
           <TriangleAlert className="h-4 w-4" />
           <AlertTitle>{t('rulesAlert.title')}</AlertTitle>
           <AlertDescription>{t('rulesAlert.content')}</AlertDescription>

@@ -30,6 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
 
 import { Namespaces } from '@/i18n/i18n';
 import { cn } from '@/lib/utils';
@@ -143,7 +144,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                         )
                       )
                     }
-                    className="w-max rounded-md border"
+                    className="w-max rounded-md bg-white shadow-md"
                     mode="single"
                     locale={i18n.language === 'fr' ? frCA : undefined}
                     labels={{
@@ -176,7 +177,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                 ) : (
                   <Calendar
                     required
-                    className="w-max rounded-md border"
+                    className="w-max rounded-md bg-white shadow"
                     mode="single"
                     locale={i18n.language === 'fr' ? frCA : undefined}
                     labels={{
@@ -200,10 +201,11 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
               </FormItem>
             )}
           />
+          <Separator orientation="vertical" className="hidden h-[305px] lg:block" />
           <div className="flex flex-col gap-2 lg:w-full">
             {selectedOpenDate ? (
               <>
-                <h3 className="flex items-center gap-2 text-2xl">
+                <h3 className="flex items-center gap-2 text-2xl font-semibold">
                   {displayFormattedDate(
                     selectedOpenDate.date,
                     getLocaleFromLanguage(i18n.language)
@@ -240,20 +242,20 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                     </PopoverContent>
                   </Popover>
                 </h3>
-                <div className="flex flex-col gap-4">
+                <div className="mt-[9px] flex flex-col gap-4">
                   <FormField
                     control={form.control}
                     name="time"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Time</FormLabel>
+                        <FormLabel>{t('timeOfReservation.label')}</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           value={field.value ? field.value.toString() : undefined}
                         >
                           <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a valid time of the day" />
+                            <SelectTrigger className="border-0 shadow">
+                              <SelectValue placeholder={t('timeOfReservation.placeholder')} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -264,7 +266,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                       </FormItem>
                     )}
                   />
-                  <div className="flex flex-col gap-2 rounded-md border px-4 pb-4 pt-2">
+                  <div className="flex flex-col gap-2 rounded-md bg-white px-4 pb-4 pt-2 shadow">
                     <FormField
                       control={form.control}
                       name="acceptedRules"

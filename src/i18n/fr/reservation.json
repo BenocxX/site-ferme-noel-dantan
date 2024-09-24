@@ -6,6 +6,10 @@
     "content": "Pour des raisons de sécurité, les animaux ne sont pas permis sur le site. De plus, nous n'acceptons que l'argent comptant, alors assurez-vous d'en avoir suffisamment avec vous."
   },
   "statsTitle": "Nombre de réservations:",
+  "timeOfReservation": {
+    "label": "Heure de la réservation",
+    "placeholder": "Sélectionnez une heure"
+  },
   "rules": {
     "noAnimals": "Je ne vais pas amener d'animaux avec moi",
     "cashOnly": "Je vais payer en argent comptant"
