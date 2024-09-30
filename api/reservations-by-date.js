@@ -29,8 +29,6 @@ const prisma = new PrismaClient();
 export async function GET(request) {
   const dateId = getParam(request, 'dateId');
 
-  // TODO: Check if dateId is valid
-
   const result = z.coerce.number().safeParse(dateId);
   if (result.error) {
     return json({ error: 'Invalid dateId' }, { status: 400 });

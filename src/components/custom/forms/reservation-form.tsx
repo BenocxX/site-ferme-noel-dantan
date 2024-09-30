@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Locale, formatDate } from 'date-fns';
 import { frCA } from 'date-fns/locale';
 import { Info, Sunrise, Sunset } from 'lucide-react';
@@ -9,7 +9,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { UseQueryResult, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 
 import { Badge } from '@/components/ui/badge';
@@ -96,25 +96,32 @@ function compareDates(date1?: Date, date2?: Date) {
 export function ReservationForm({ className, ...formProps }: React.ComponentProps<'form'>) {
   const { t, i18n } = useTranslation('reservation');
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
+  // Mutation to create a reservation (submit the form)
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof FormSchema>) => {
       return axios.post('/api/reservations-by-date', data);
     },
     onSuccess: async () => {
-      await navigate({
-        from: '/reservation',
-        to: '/success',
-      });
+      await navigate({ from: '/reservation', to: '/' });
+    },
+    onError: async (error: AxiosError) => {
+      const result = error.response?.data as { error: string } | undefined;
+
+      if (result?.error === 'reservationIsFull') {
+        // Will invalidate the query for the selected date, thus refreshing the time slots
+        queryClient.invalidateQueries({ queryKey: ['reservation-spots', selectedOpenDate?.id] });
+      }
     },
   });
 
+  // Query to get the open dates (calendar)
   const openDatesQuery = useQuery({
     queryKey: ['open-date'],
     queryFn: async () => {
-      const res = await fetch('/api/open-date');
-      const openDates = (await res.json()) as OpenDate[];
-      return openDates.map((openDate) => ({
+      const { data } = await axios.get<OpenDate[]>('/api/open-date');
+      return data.map((openDate) => ({
         ...openDate,
         date: new Date(openDate.date),
       }));
@@ -134,6 +141,17 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
 
   const [selectedOpenDate, setSelectedOpenDate] = useState<OpenDate | undefined>();
 
+  // Query to get the reservation spots for the selected date. Will update when the selected date changes
+  const reservationSpotsQuery = useQuery({
+    queryKey: ['reservation-spots', selectedOpenDate?.id],
+    queryFn: async () => {
+      const { data } = await axios.get<ReservationSpot[]>(
+        `/api/reservations-by-date?dateId=${selectedOpenDate?.id}`
+      );
+      return data;
+    },
+  });
+
   useEffect(() => {
     setSelectedOpenDate(earliestDate);
     if (earliestDate) {
@@ -147,8 +165,8 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
     toast.promise(promise, {
       loading: 'Réservation en cours...',
       success: 'Réservation effectuée avec succès!',
-      error: (error) => {
-        const result = error.response?.data;
+      error: (error: AxiosError) => {
+        const result = error.response?.data as { error: string } | undefined;
 
         switch (result?.error) {
           case 'reservationNotFound':
@@ -299,7 +317,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <ReservationSpotsItems openDate={selectedOpenDate} />
+                            <ReservationSpotsItems reservationSpotsQuery={reservationSpotsQuery} />
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -369,15 +387,11 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
   );
 }
 
-function ReservationSpotsItems({ openDate }: { openDate: OpenDate }) {
-  const reservationSpotsQuery = useQuery({
-    queryKey: [openDate],
-    queryFn: async (query) => {
-      const res = await fetch(`/api/reservations-by-date?dateId=${query.queryKey[0].id}`);
-      return (await res.json()) as ReservationSpot[];
-    },
-  });
-
+function ReservationSpotsItems({
+  reservationSpotsQuery,
+}: {
+  reservationSpotsQuery: UseQueryResult<ReservationSpot[], Error>;
+}) {
   if (reservationSpotsQuery.isLoading) {
     return (
       <SelectItem value={'1'} disabled>
