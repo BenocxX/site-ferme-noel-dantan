@@ -69,19 +69,18 @@ export async function GET(request) {
  */
 export async function POST(request) {
   const body = await request.json();
-  const { openDateId, halfHourId } = body;
-
-  // TODO: Check if openDateId and halfHourId are valid
+  const { reservationId: id } = body;
 
   const reservation = await prisma.reservation.findFirst({
-    where: {
-      openDateId: openDateId,
-      halfHourId: halfHourId,
-    },
+    where: { id },
   });
 
+  if (!reservation) {
+    return json({ error: 'reservationNotFound' }, { status: 404 });
+  }
+
   if (reservation.count >= 10) {
-    return json({ error: 'Reservation is full' }, { status: 400 });
+    return json({ error: 'reservationIsFull' }, { status: 400 });
   }
 
   await prisma.reservation.update({
@@ -95,5 +94,5 @@ export async function POST(request) {
     },
   });
 
-  return json(body);
+  return new Response(null, { status: 204 });
 }

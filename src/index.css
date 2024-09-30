@@ -84,6 +84,10 @@
   animation: animatedSnowBackground 15s linear infinite;
 }
 
+.toast button {
+  @apply bg-background;
+}
+
 @keyframes animatedSnowBackground {
   0% {
     background-position: 0 0;

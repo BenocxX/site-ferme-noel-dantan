@@ -25,7 +25,7 @@ function Root() {
           <Outlet />
         </main>
         <Footer />
-        <Toaster position="top-right" />
+        <Toaster position="top-right" richColors closeButton className="toast" />
         {/* <CookieConsent /> */}
       </div>
       <Suspense>

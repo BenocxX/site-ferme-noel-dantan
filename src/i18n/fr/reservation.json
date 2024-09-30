@@ -14,5 +14,11 @@
     "noAnimals": "Je ne vais pas amener d'animaux avec moi",
     "cashOnly": "Je vais payer en argent comptant"
   },
-  "submitButton": "Reserver"
+  "errors": {
+    "reservationNotFound": "Ce créneau horaire introuvable...",
+    "reservationIsFull": "Désolé, ce créneau horaire est complet...",
+    "unknownError": "Erreur... Veuillez réessayer plus tard."
+  },
+  "submitButton": "Réserver",
+  "submitting": "Réservation..."
 }

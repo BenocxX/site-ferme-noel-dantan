@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Locale, formatDate } from 'date-fns';
 import { frCA } from 'date-fns/locale';
 import { Info, Sunrise, Sunset } from 'lucide-react';
@@ -8,7 +9,8 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate } from '@tanstack/react-router';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -70,7 +72,7 @@ const rules: {
 
 const FormSchema = z.object({
   date: z.number(),
-  time: z.coerce
+  reservationId: z.coerce
     .number()
     .optional()
     .refine((time) => time ?? -1 >= 0, {
@@ -87,8 +89,25 @@ const FormSchema = z.object({
     }),
 });
 
+function compareDates(date1?: Date, date2?: Date) {
+  return date1?.toLocaleDateString('en-US') === date2?.toLocaleDateString('en-US');
+}
+
 export function ReservationForm({ className, ...formProps }: React.ComponentProps<'form'>) {
   const { t, i18n } = useTranslation('reservation');
+  const navigate = useNavigate();
+
+  const mutation = useMutation({
+    mutationFn: (data: z.infer<typeof FormSchema>) => {
+      return axios.post('/api/reservations-by-date', data);
+    },
+    onSuccess: async () => {
+      await navigate({
+        from: '/reservation',
+        to: '/success',
+      });
+    },
+  });
 
   const openDatesQuery = useQuery({
     queryKey: ['open-date'],
@@ -113,9 +132,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
     },
   });
 
-  const [selectedOpenDate, setSelectedOpenDate] = useState<OpenDate | undefined>(
-    openDatesQuery.data?.find((date) => date.id === form.watch('date'))
-  );
+  const [selectedOpenDate, setSelectedOpenDate] = useState<OpenDate | undefined>();
 
   useEffect(() => {
     setSelectedOpenDate(earliestDate);
@@ -125,8 +142,24 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
   }, [earliestDate, form]);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
-    toast('Form submitted');
+    const promise = mutation.mutateAsync(data);
+
+    toast.promise(promise, {
+      loading: 'Réservation en cours...',
+      success: 'Réservation effectuée avec succès!',
+      error: (error) => {
+        const result = error.response?.data;
+
+        switch (result?.error) {
+          case 'reservationNotFound':
+            return t('errors.reservationNotFound');
+          case 'reservationIsFull':
+            return t('errors.reservationIsFull');
+        }
+
+        return t('errors.unknownError');
+      },
+    });
   }
 
   return (
@@ -145,15 +178,11 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                 {openDatesQuery.isSuccess ? (
                   <Calendar
                     required
-                    onDayClick={(day) =>
+                    onDayClick={(day) => {
                       setSelectedOpenDate(
-                        openDatesQuery.data?.find(
-                          (date) =>
-                            date.date.toLocaleDateString('en-US') ===
-                            day.toLocaleDateString('en-US')
-                        )
-                      )
-                    }
+                        openDatesQuery.data?.find((date) => compareDates(date.date, day))
+                      );
+                    }}
                     className="w-max rounded-md bg-white shadow-md"
                     mode="single"
                     locale={i18n.language === 'fr' ? frCA : undefined}
@@ -165,18 +194,18 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                     fromDate={earliestDate?.date}
                     toYear={today.getFullYear()}
                     disabled={(calendarDate) => {
-                      const isDateOpen = openDatesQuery.data?.some(
-                        (date) =>
-                          date.date.toLocaleDateString('en-US') ===
-                          calendarDate.toLocaleDateString('en-US')
+                      if (mutation.isPending) return true;
+
+                      const isDateOpen = openDatesQuery.data?.some((date) =>
+                        compareDates(date.date, calendarDate)
                       );
+
                       return !isDateOpen;
                     }}
                     onSelect={(e) => {
                       // field.onChange(e);
-                      const id = openDatesQuery.data?.find(
-                        (date) =>
-                          date.date.toLocaleDateString('en-US') === e?.toLocaleDateString('en-US')
+                      const id = openDatesQuery.data?.find((date) =>
+                        compareDates(date.date, e)
                       )?.id;
                       if (id) {
                         form.setValue('date', id);
@@ -255,13 +284,14 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                 <div className="mt-[9px] flex flex-col gap-4">
                   <FormField
                     control={form.control}
-                    name="time"
+                    name="reservationId"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>{t('timeOfReservation.label')}</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           value={field.value ? field.value.toString() : undefined}
+                          disabled={mutation.isPending}
                         >
                           <FormControl>
                             <SelectTrigger className="border-0 shadow">
@@ -298,6 +328,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                                   >
                                     <FormControl>
                                       <Checkbox
+                                        disabled={mutation.isPending}
                                         checked={field.value?.includes(rule.id)}
                                         onCheckedChange={(checked) => {
                                           return checked
@@ -321,8 +352,12 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                       )}
                     />
                   </div>
-                  <Button type="submit" className="w-full shadow-md">
-                    {t('submitButton')}
+                  <Button
+                    type="submit"
+                    className="w-full shadow-md transition"
+                    disabled={mutation.isPending}
+                  >
+                    {mutation.isPending ? t('submitting') : t('submitButton')}
                   </Button>
                 </div>
               </>

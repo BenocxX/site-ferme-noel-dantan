@@ -14,5 +14,11 @@
     "noAnimals": "I will not bring any animals with me",
     "cashOnly": "I will pay in cash"
   },
-  "submitButton": "Reserve"
+  "errors": {
+    "reservationNotFound": "This time slot is not found...",
+    "reservationIsFull": "Sorry, this time slot is full...",
+    "unknownError": "Error... Please try again later."
+  },
+  "submitButton": "Reserve",
+  "submitting": "Reserving..."
 }
