@@ -11,10 +11,12 @@
     "placeholder": "Sélectionnez une heure"
   },
   "rules": {
+    "label": "Règlements",
     "noAnimals": "Je ne vais pas amener d'animaux avec moi",
     "cashOnly": "Je vais payer en argent comptant"
   },
   "errors": {
+    "noReservationSpots": "Aucun créneau horaire disponible",
     "reservationNotFound": "Ce créneau horaire introuvable...",
     "reservationIsFull": "Désolé, ce créneau horaire est complet...",
     "unknownError": "Erreur... Veuillez réessayer plus tard."

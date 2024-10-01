@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { Locale, formatDate } from 'date-fns';
+import { formatDate } from 'date-fns';
 import { frCA } from 'date-fns/locale';
 import { Info, Sunrise, Sunset } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -263,10 +263,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
             {selectedOpenDate ? (
               <>
                 <h3 className="flex items-center gap-2 text-2xl font-semibold">
-                  {displayFormattedDate(
-                    selectedOpenDate.date,
-                    getLocaleFromLanguage(i18n.language)
-                  )}
+                  <FormattedDate date={selectedOpenDate.date} />
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
@@ -331,7 +328,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                       render={() => (
                         <FormItem>
                           <div className="mb-4">
-                            <FormLabel className="text-base">Règlements</FormLabel>
+                            <FormLabel className="text-base">{t('rules.label')}</FormLabel>
                           </div>
                           {rules.map((rule) => (
                             <FormField
@@ -392,10 +389,12 @@ function ReservationSpotsItems({
 }: {
   reservationSpotsQuery: UseQueryResult<ReservationSpot[], Error>;
 }) {
+  const { t } = useTranslation('reservation');
+
   if (reservationSpotsQuery.isLoading) {
     return (
       <SelectItem value={'1'} disabled>
-        Loading...
+        {t('loading', { ns: 'common' })}
       </SelectItem>
     );
   }
@@ -403,7 +402,7 @@ function ReservationSpotsItems({
   if (reservationSpotsQuery.isError) {
     return (
       <SelectItem value={'1'} disabled>
-        Error loading data
+        {t('errors.noReservationSpots')}
       </SelectItem>
     );
   } else if (reservationSpotsQuery.isSuccess) {
@@ -415,11 +414,12 @@ function ReservationSpotsItems({
   }
 }
 
-function getLocaleFromLanguage(language: string): Locale | undefined {
-  return language === 'fr' ? frCA : undefined;
-}
+function FormattedDate({ date }: { date: Date }) {
+  const { i18n } = useTranslation('reservation');
 
-function displayFormattedDate(date: Date, locale?: Locale) {
-  const formattedDate = formatDate(date, 'PPPP', { locale });
+  const formattedDate = formatDate(date, 'PPPP', {
+    locale: i18n.language === 'fr' ? frCA : undefined,
+  });
+
   return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
 }

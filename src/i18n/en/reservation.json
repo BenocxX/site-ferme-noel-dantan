@@ -11,10 +11,12 @@
     "placeholder": "Select a time"
   },
   "rules": {
+    "label": "Rules",
     "noAnimals": "I will not bring any animals with me",
     "cashOnly": "I will pay in cash"
   },
   "errors": {
+    "noReservationSpots": "No time slots available",
     "reservationNotFound": "This time slot is not found...",
     "reservationIsFull": "Sorry, this time slot is full...",
     "unknownError": "Error... Please try again later."

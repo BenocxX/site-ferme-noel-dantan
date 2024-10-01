@@ -9,5 +9,6 @@
   "calendar": {
     "prevMonth": "Go to previous month",
     "nextMonth": "Go to next month"
-  }
+  },
+  "loading": "Loading..."
 }
