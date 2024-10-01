@@ -8,8 +8,28 @@
     },
     "description": "Come choose and cut your own Christmas tree!"
   },
-  "facebookSection": {
-    "title": "Join us on Facebook!",
-    "description": "Follow us on Facebook to stay up to date with our latest news and events."
+  "offerSection": {
+    "title": "Hundreds of trees",
+    "subTitle": "A large selection",
+    "description": "Come walk through our Christmas tree forest and choose yours from hundreds of trees.",
+    "quote": {
+      "text": "Vel ultricies morbi odio facilisi ultrices accumsan donec lacus purus. Lectus nibh ullamcorper ac dictum justo in euismod. Risus aenean ut elit massa. In amet aliquet eget cras. Sem volutpat enim tristique.",
+      "person": "Mathis Côté",
+      "job": "Web developer"
+    },
+    "imgAlt": "Winter trail"
+  },
+  "teamSection": {
+    "title": "Ferme Noël d'Antan",
+    "subTitle": "A passionate team",
+    "description": "Come meet us and discover our team passionate about Christmas trees. We will be happy to welcome you and help you find the perfect tree for the holiday season.",
+    "subDescription": "We are always looking for new talents to join our team. If you have a passion for Christmas trees, do not hesitate to apply. We will be happy to meet you."
+  },
+  "contactSection": {
+    "title": "Stay in touch",
+    "subTitle": "Join us on Facebook!",
+    "description": "Follow us on Facebook to stay up to date with our latest news and events.",
+    "subDescription": "Feel free to take photos and share them with us on our Facebook page. We love to see your photos and experiences, both on the farm and at home with your tree!",
+    "link": "Visit our Facebook page"
   }
 }

@@ -19,20 +19,14 @@ export function TeamSection() {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:min-w-full lg:max-w-none lg:flex-none lg:gap-y-8">
           <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
             <h2 className="text-base font-semibold leading-7 text-primary">
-              Une équipe passionnée
+              {t('teamSection.subTitle')}
             </h2>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Ferme Noël d&apos;Antan
+              {t('teamSection.title')}
             </h2>
-            <p className="mt-6 text-xl leading-8 text-gray-600">
-              Venez nous rencontrer et découvrez notre équipe passionnée par les sapins de Noël.
-              Nous serons ravis de vous accueillir et de vous aider à trouver le sapin parfait pour
-              les fêtes de fin d&apos;année.
-            </p>
+            <p className="mt-6 text-xl leading-8 text-gray-600">{t('teamSection.description')}</p>
             <p className="mt-6 text-base leading-7 text-gray-600">
-              Nous sommes toujours à la recherche de nouveaux talents pour rejoindre notre équipe.
-              Si vous avez une passion pour les sapins de Noël, n&apos;hésitez pas à postuler. Nous
-              serons ravis de vous rencontrer.
+              {t('teamSection.subDescription')}
             </p>
             <div className="mt-10 flex flex-col sm:flex-row">
               <Button asChild size="lg" className="gap-2">

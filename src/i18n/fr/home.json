@@ -8,8 +8,28 @@
     },
     "description": "Venez choisir et couper votre sapin de Noël!"
   },
-  "facebookSection": {
-    "title": "Rejoignez-nous sur Facebook!",
-    "description": "Suivez-nous sur Facebook pour rester informé de nos dernières actualités et événements."
+  "offerSection": {
+    "title": "Des centaines de sapins",
+    "subTitle": "Une grande sélection",
+    "description": "Venez vous promener dans notre forêt de sapins et choisissez le vôtre parmi des centaines d'arbres.",
+    "quote": {
+      "text": "Vel ultricies morbi odio facilisi ultrices accumsan donec lacus purus. Lectus nibh ullamcorper ac dictum justo in euismod. Risus aenean ut elit massa. In amet aliquet eget cras. Sem volutpat enim tristique.",
+      "person": "Mathis Côté",
+      "job": "Développeur web"
+    },
+    "imgAlt": "Sentier d'hiver"
+  },
+  "teamSection": {
+    "title": "Ferme Noël d'Antan",
+    "subTitle": "Une équipe passionnée",
+    "description": "Venez nous rencontrer et découvrez notre équipe passionnée par les sapins de Noël. Nous serons ravis de vous accueillir et de vous aider à trouver le sapin parfait pour les fêtes de fin d'année.",
+    "subDescription": "Nous sommes toujours à la recherche de nouveaux talents pour rejoindre notre équipe. Si vous avez une passion pour les sapins de Noël, n'hésitez pas à postuler. Nous serons ravis de vous rencontrer."
+  },
+  "contactSection": {
+    "title": "Restons en contact",
+    "subTitle": "Rejoignez-nous sur Facebook!",
+    "description": "Suivez-nous sur Facebook pour rester informé de nos dernières actualités et événements.",
+    "subDescription": "Sentez-vous libre de prendre des photos et de les partager avec nous sur notre page Facebook. Nous adorons voir vos photos et vos expériences, autant sur la ferme que chez vous avec votre sapin!",
+    "link": "Visiter notre page Facebook"
   }
 }

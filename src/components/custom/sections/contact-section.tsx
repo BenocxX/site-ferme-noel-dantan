@@ -19,20 +19,17 @@ export function ContactSection() {
       <div className="mx-auto max-w-7xl md:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2">
           <div className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
-            <h2 className="text-base font-semibold leading-7 text-primary">Restons en contact</h2>
+            <h2 className="text-base font-semibold leading-7 text-primary">
+              {t('contactSection.subTitle')}
+            </h2>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              {/* {t('facebookSection.title')} */}
-              Rejoignez-nous sur Facebook!
+              {t('contactSection.title')}
             </h2>
             <p className="mt-6 text-xl leading-8 text-gray-600">
-              {/* {t('facebookSection.description')} */}
-              Suivez-nous sur Facebook pour rester informé de nos dernières actualités et
-              événements.
+              {t('contactSection.description')}
             </p>
             <p className="mt-6 text-base leading-7 text-gray-600">
-              Sentez-vous libre de prendre des photos et de les partager avec nous sur notre page
-              Facebook. Nous adorons voir vos photos et vos expériences, autant sur la ferme que
-              chez vous avec votre sapin!
+              {t('contactSection.subDescription')}
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="gap-2">
@@ -42,7 +39,7 @@ export function ContactSection() {
                 </Link>
               </Button>
               <Button variant="secondary" size="lg">
-                <a href="https://www.facebook.com/fermenoeldantan">Visiter notre page Facebook</a>
+                <a href="https://www.facebook.com/fermenoeldantan">{t('contactSection.link')}</a>
               </Button>
             </div>
           </div>

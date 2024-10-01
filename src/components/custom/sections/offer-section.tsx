@@ -17,14 +17,13 @@ export function OfferSection() {
           <div className="lg:ml-auto lg:pl-4 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2 className="text-base font-semibold leading-7 text-primary">
-                Une grande sélection
+                {t('offerSection.subTitle')}
               </h2>
               <p className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-                Des centaines de sapins
+                {t('offerSection.title')}
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Venez vous promener dans notre forêt de sapins et choisissez le vôtre parmi des
-                centaines d&apos;arbres.
+                {t('offerSection.description')}
               </p>
               <div className="mt-8 flex flex-col sm:flex-row">
                 <Button asChild size="lg" className="gap-2">
@@ -36,11 +35,7 @@ export function OfferSection() {
               </div>
               <figure className="mt-16 border-l border-gray-200 pl-8 text-gray-600">
                 <blockquote className="text-base leading-7">
-                  <p>
-                    “Vel ultricies morbi odio facilisi ultrices accumsan donec lacus purus. Lectus
-                    nibh ullamcorper ac dictum justo in euismod. Risus aenean ut elit massa. In amet
-                    aliquet eget cras. Sem volutpat enim tristique.”
-                  </p>
+                  <p>“{t('offerSection.quote.text')}”</p>
                 </blockquote>
                 <figcaption className="mt-6 flex gap-x-4 text-sm leading-6">
                   <img
@@ -49,7 +44,8 @@ export function OfferSection() {
                     className="h-6 w-6 flex-none rounded-full object-cover"
                   />
                   <div>
-                    <span className="font-semibold">Mathis Côté</span> - Développeur web
+                    <span className="font-semibold">{t('offerSection.quote.person')}</span> -{' '}
+                    {t('offerSection.quote.job')}
                   </div>
                 </figcaption>
               </figure>
@@ -57,7 +53,7 @@ export function OfferSection() {
           </div>
           <div className="flex items-start justify-end lg:order-first">
             <img
-              alt="Sentier hiver"
+              alt={t('offerSection.imgAlt')}
               src={SentierHiver}
               width={2432}
               height={1442}
