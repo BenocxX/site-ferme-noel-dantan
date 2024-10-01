@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
 
-import { FacebookSection } from '@/components/custom/sections/facebook-section';
+import { ContactSection } from '@/components/custom/sections/contact-section';
 import { HeroSection } from '@/components/custom/sections/hero-section';
 import { OfferSection } from '@/components/custom/sections/offer-section';
 import { TeamSection } from '@/components/custom/sections/team-section';
@@ -15,7 +15,7 @@ function Index() {
       <HeroSection />
       <OfferSection />
       <TeamSection />
-      <FacebookSection />
+      <ContactSection />
     </div>
   );
 }

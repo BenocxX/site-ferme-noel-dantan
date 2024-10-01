@@ -11,10 +11,10 @@ export function OfferSection() {
   const { t } = useTranslation('home');
 
   return (
-    <div className="overflow-hidden bg-background py-24 sm:py-32">
+    <div className="overflow-hidden bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start">
-          <div className="lg:pr-4 lg:pt-4">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="lg:ml-auto lg:pl-4 lg:pt-4">
             <div className="lg:max-w-lg">
               <h2 className="text-base font-semibold leading-7 text-primary">
                 Une grande sélection
@@ -26,7 +26,7 @@ export function OfferSection() {
                 Venez vous promener dans notre forêt de sapins et choisissez le vôtre parmi des
                 centaines d&apos;arbres.
               </p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-col sm:flex-row">
                 <Button asChild size="lg" className="gap-2">
                   <Link to="/reservation">
                     {t('ctaButton')}
@@ -45,23 +45,25 @@ export function OfferSection() {
                 <figcaption className="mt-6 flex gap-x-4 text-sm leading-6">
                   <img
                     alt=""
-                    src="https://images.unsplash.com/photo-1509783236416-c9ad59bae472?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80"
-                    className="h-6 w-6 flex-none rounded-full"
+                    src="https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-6/275421468_1572442069801405_6302698686172045318_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=7cASifAZNmcQ7kNvgFts1-v&_nc_ht=scontent-lga3-2.xx&oh=00_AYBKVQR65cNYrHv9d5g0nd-1VGfcfJOGEkOI8FhhPV8f1g&oe=6701EBCC"
+                    className="h-6 w-6 flex-none rounded-full object-cover"
                   />
                   <div>
-                    <span className="font-semibold">Maria Hill</span> - Marketing Manager
+                    <span className="font-semibold">Mathis Côté</span> - Développeur web
                   </div>
                 </figcaption>
               </figure>
             </div>
           </div>
-          <img
-            alt="Sentier hiver"
-            src={SentierHiver}
-            width={2432}
-            height={1442}
-            className="max-h-[500px] w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:ml-0"
-          />
+          <div className="flex items-start justify-end lg:order-first">
+            <img
+              alt="Sentier hiver"
+              src={SentierHiver}
+              width={2432}
+              height={1442}
+              className="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
+            />
+          </div>
         </div>
       </div>
     </div>
