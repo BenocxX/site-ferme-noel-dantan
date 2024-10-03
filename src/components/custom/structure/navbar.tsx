@@ -51,7 +51,7 @@ function NavbarSheet() {
         <Menu />
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col justify-between">
-        <SheetHeader className="flex flex-col gap-2">
+        <SheetHeader className="flex flex-col gap-2 p-6">
           <SheetTitle className="text-3xl font-medium">{t('companyName')}</SheetTitle>
           <Separator />
           <div className="flex flex-col">
@@ -94,7 +94,7 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLDivElem
       <div className="flex items-center gap-2">
         <NavbarSheet />
         <h4 className="text-2xl font-medium md:text-3xl">{t('companyName')}</h4>
-        <div className="hidden items-center px-4 md:flex">
+        <div className="hidden items-center pl-6 md:flex">
           {links.map((link, i) => (
             <Link
               key={i}
@@ -102,7 +102,7 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLDivElem
               search={{ id: link.id, offset: link.offset }}
               className={buttonVariants({
                 variant: 'link',
-                className: 'text-base font-normal text-white',
+                className: '!text-base font-normal text-white',
               })}
             >
               {t(link.i18nKey, { ns: 'navbar' })}
