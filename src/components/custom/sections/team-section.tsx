@@ -37,16 +37,16 @@ export function TeamSection() {
               </Button>
             </div>
           </div>
-          <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
+          <div className="flex flex-col flex-wrap items-start justify-end gap-6 sm:gap-8 md:flex-row lg:contents">
             <div className="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
               <img
                 alt=""
                 src={Equipe1}
-                className="aspect-[7/5] w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover"
+                className="aspect-[7/5] w-screen max-w-none rounded-2xl bg-gray-50 object-cover md:w-[37rem]"
               />
             </div>
             <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
-              <div className="order-first flex w-64 flex-none justify-end self-end lg:w-auto">
+              <div className="order-first hidden w-64 flex-none justify-end self-end md:flex lg:w-auto">
                 <img
                   alt=""
                   src={Equipe3}
@@ -57,10 +57,10 @@ export function TeamSection() {
                 <img
                   alt=""
                   src={Equipe2}
-                  className="aspect-[7/5] w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
+                  className="aspect-[7/5] w-screen max-w-none flex-none rounded-2xl bg-gray-50 object-cover md:w-[37rem]"
                 />
               </div>
-              <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
+              <div className="hidden sm:w-0 sm:flex-auto md:block lg:w-auto lg:flex-none">
                 <img
                   alt=""
                   src={Equipe4}

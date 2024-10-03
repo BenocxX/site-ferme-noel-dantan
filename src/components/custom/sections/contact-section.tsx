@@ -43,10 +43,10 @@ export function ContactSection() {
               </Button>
             </div>
           </div>
-          <div className="sm:px-6 lg:px-0">
+          <div className="hidden sm:block sm:px-6 lg:px-0">
             <FacebookEmbeddedPage
               pageName="fermenoeldantan"
-              width={isMobile ? 375 : 500}
+              width={isMobile ? 400 : 500}
               height={550}
               className="mx-auto rounded-xl"
             />
