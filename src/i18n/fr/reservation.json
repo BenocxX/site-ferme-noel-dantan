@@ -22,5 +22,9 @@
     "unknownError": "Erreur... Veuillez réessayer plus tard."
   },
   "submitButton": "Réserver",
-  "submitting": "Réservation..."
+  "submitting": "Réservation...",
+  "tempDisabled": {
+    "title": "Réservation temporairement désactivé...",
+    "description": "Le site est en cours de développement, le système de réservation sera prêt d'ici quelques semaines! Nous vous remercions de votre patience :)"
+  }
 }

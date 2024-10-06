@@ -47,13 +47,8 @@ function Reservation() {
             <AlertDescription>{t('rulesAlert.content')}</AlertDescription>
           </Alert>
           <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
-            <h4 className="text-center text-3xl font-semibold">
-              Réservation temporairement désactivé...
-            </h4>
-            <p className="text-center">
-              Le site est en cours de développement, le système de réservation sera prêt d&apos;ici
-              quelques semaines! Nous vous remercions de votre patience :)
-            </p>
+            <h4 className="text-center text-3xl font-semibold">{t('tempDisabled.title')}</h4>
+            <p className="text-center">{t('tempDisabled.description')}</p>
           </div>
         </div>
       </div>
