@@ -1,0 +1,30 @@
+{
+  "title": "Foire aux questions",
+  "subtitle": "Voici les questions les plus fréquemment posées à propos de notre ferme de sapins de Noël. Pour plus d'informations, veuillez nous contacter au <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
+  "questions": {
+    "1": {
+      "question": "Est-ce que le stationnement est gratuit?",
+      "answer": "Oui, le stationnement est gratuit pour tous nos clients. Toutefois, veuillez noter que le stationnement est très petit, veuillez venir avec seulement une voiture pour toute la famille."
+    },
+    "2": {
+      "question": "Est-ce que je peux avoir une remorque?",
+      "answer": "Oui, vous pouvez venir avec une remorque tant qu'elle n'est pas plus grande que 8 pieds. Notre stationnement est petit, veuillez prendre note de cela. Merci!"
+    },
+    "3": {
+      "question": "Quel est le prix des sapins?",
+      "answer": "Les prix varient en fonction de la taille du sapin. Le prix est de 10$ par pied. Veuillez noter que nous vendons que des sapins entre 4 et 8 pieds, donc amener au moins 40$!"
+    },
+    "4": {
+      "question": "Est-ce que je peux amener mon chien?",
+      "answer": "Non, les animaux ne sont pas permis sur le site pour des raisons de sécurité et gestion. Nous vous prions de laisser vos animaux à la maison :("
+    },
+    "5": {
+      "question": "Quels sont les modes de paiement acceptés?",
+      "answer": "Nous acceptons seulement les paiements en argent comptant. Assurez-vous d'avoir la monnaie nécessaire pour votre achat!"
+    },
+    "6": {
+      "question": "Où se trouve la ferme?",
+      "answer": "Nous nous situons au 2423, 7e rang, Saint-Théodore-d'Acton."
+    }
+  }
+}

@@ -37,7 +37,7 @@ function Reservation() {
               t={t}
               i18nKey="information"
               components={{
-                phoneLink: <a className="text-primary" />,
+                phoneLink: <a className="text-primary underline-offset-4 hover:underline" />,
               }}
             />
           </p>

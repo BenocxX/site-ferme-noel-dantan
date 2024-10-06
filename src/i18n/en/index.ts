@@ -1,4 +1,5 @@
 import common from './common.json';
+import faq from './faq.json';
 import footer from './footer.json';
 import home from './home.json';
 import navbar from './navbar.json';
@@ -14,6 +15,7 @@ const enTranslations = {
   navbar,
   home,
   reservation,
+  faq,
   footer,
   policies,
 };

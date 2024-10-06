@@ -1,0 +1,30 @@
+{
+  "title": "Frequently asked questions",
+  "subtitle": "Here are the most frequently asked questions about our Christmas tree farm. For more information, please contact us at <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
+  "questions": {
+    "1": {
+      "question": "Is parking free?",
+      "answer": "Yes, parking is free for all our customers. However, please note that the parking lot is very small, please come with only one car for the whole family."
+    },
+    "2": {
+      "question": "Can I bring a trailer?",
+      "answer": "Yes, you can come with a trailer as long as it is not larger than 8 feet. Our parking lot is small, please take note of this. Thank you!"
+    },
+    "3": {
+      "question": "What is the price of the trees?",
+      "answer": "Prices vary depending on the size of the tree. The price is $10 per foot. Please note that we only sell trees between 4 and 8 feet, so a minimum of $40 for the smallest trees."
+    },
+    "4": {
+      "question": "Can I bring my dog?",
+      "answer": "No, animals are not allowed on the site for safety and management reasons. Please leave your pets at home."
+    },
+    "5": {
+      "question": "What payment methods are accepted?",
+      "answer": "We only accept cash payments. Make sure you have the necessary change for your purchase!"
+    },
+    "6": {
+      "question": "Where is the farm located?",
+      "answer": "We are located at 2423, 7th rang, Saint-Théodore-d'Acton."
+    }
+  }
+}
