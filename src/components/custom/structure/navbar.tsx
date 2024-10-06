@@ -34,6 +34,10 @@ const links: {
     i18nKey: 'reservation',
     href: '/reservation',
   },
+  {
+    i18nKey: 'faq',
+    href: '/faq',
+  },
 ];
 
 function NavbarSheet() {
