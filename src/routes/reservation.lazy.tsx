@@ -46,7 +46,14 @@ function Reservation() {
             <AlertTitle>{t('rulesAlert.title')}</AlertTitle>
             <AlertDescription>{t('rulesAlert.content')}</AlertDescription>
           </Alert>
-          <ReservationForm className="flex-1 space-y-4" />
+          {/* <ReservationForm className="flex-1 space-y-4" /> */}
+          <div className="flex h-full flex-col items-center justify-center gap-6 rounded-xl bg-white px-8 py-4 shadow">
+            <h4 className="text-center text-3xl">Réservation temporairement désactivé...</h4>
+            <p className="text-center">
+              Le site est en cours de développement, le système de réservation sera prêt d&apos;ici
+              quelques semaines! Nous vous remercions de votre patience :)
+            </p>
+          </div>
         </div>
       </div>
     </div>
