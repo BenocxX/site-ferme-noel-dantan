@@ -5,7 +5,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 
 import FamilleAnimal from '@/assets/images/famille-animal-hiver.jpg';
 
-import { ReservationForm } from '@/components/custom/forms/reservation-form';
+// import { ReservationForm } from '@/components/custom/forms/reservation-form';
 import { SnowFaller } from '@/components/custom/snow-faller';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
@@ -46,9 +46,10 @@ function Reservation() {
             <AlertTitle>{t('rulesAlert.title')}</AlertTitle>
             <AlertDescription>{t('rulesAlert.content')}</AlertDescription>
           </Alert>
-          {/* <ReservationForm className="flex-1 space-y-4" /> */}
-          <div className="flex h-full flex-col items-center justify-center gap-6 rounded-xl bg-white px-8 py-4 shadow">
-            <h4 className="text-center text-3xl">Réservation temporairement désactivé...</h4>
+          <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
+            <h4 className="text-center text-3xl font-semibold">
+              Réservation temporairement désactivé...
+            </h4>
             <p className="text-center">
               Le site est en cours de développement, le système de réservation sera prêt d&apos;ici
               quelques semaines! Nous vous remercions de votre patience :)
