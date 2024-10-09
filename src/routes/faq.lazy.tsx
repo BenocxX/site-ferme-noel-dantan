@@ -2,6 +2,8 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { createLazyFileRoute } from '@tanstack/react-router';
 
+import SentierHiver from '@/assets/images/sentier-hiver.jpg';
+
 export const Route = createLazyFileRoute('/faq')({
   component: Faq,
 });
@@ -20,11 +22,30 @@ function Faq() {
 
   return (
     <div className="bg-white">
+      {/* <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
+        <img
+          alt="Sentier en hiver"
+          src={SentierHiver}
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-black opacity-50" />
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">{t('title')}</h2>
+          <p className="mt-6 text-lg leading-8 text-white">
+            <Trans
+              t={t}
+              i18nKey="subtitle"
+              components={{
+                phoneLink: <a className="text-primary underline-offset-4 hover:underline" />,
+              }}
+            />
+          </p>
+        </div>
+      </div> */}
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-bold leading-10 tracking-tight">{t('title')}</h2>
-          <p className="mt-6 text-base leading-7 text-foreground/60">
-            {/* Ref: https://react.i18next.com/latest/trans-component#alternative-usage-which-lists-the-components-v11.6.0 */}
+          <h2 className="text-4xl font-bold leading-10 tracking-tight md:text-5xl">{t('title')}</h2>
+          <p className="mt-8 text-base leading-7 text-foreground/60">
             <Trans
               t={t}
               i18nKey="subtitle"
