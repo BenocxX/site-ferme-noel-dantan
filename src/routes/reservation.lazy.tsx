@@ -1,5 +1,6 @@
 import { TriangleAlert } from 'lucide-react';
 import { Trans, useTranslation } from 'react-i18next';
+import { useTitle } from "@/lib/hooks/useTitle";
 
 import { createLazyFileRoute } from '@tanstack/react-router';
 
@@ -15,6 +16,8 @@ export const Route = createLazyFileRoute('/reservation')({
 
 function Reservation() {
   const { t } = useTranslation('reservation');
+
+  useTitle(t("pageTitle"));
 
   return (
     <div className="bg-secondary">
