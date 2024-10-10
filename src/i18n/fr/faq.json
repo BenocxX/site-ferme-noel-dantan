@@ -1,4 +1,5 @@
 {
+  "pageTitle": "Ferme Noël d'Antan | Foire aux questions",
   "title": "Foire aux questions",
   "subtitle": "Voici les questions les plus fréquemment posées à propos de notre ferme de sapins de Noël. Pour plus d'informations, veuillez nous contacter au <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
   "questions": {

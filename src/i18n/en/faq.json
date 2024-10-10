@@ -1,4 +1,5 @@
 {
+  "pageTitle": "Ferme Noël d'Antan | Frequently asked questions",
   "title": "Frequently asked questions",
   "subtitle": "Here are the most frequently asked questions about our Christmas tree farm. For more information, please contact us at <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
   "questions": {

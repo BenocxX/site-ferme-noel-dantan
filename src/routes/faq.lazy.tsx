@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { createLazyFileRoute } from '@tanstack/react-router';
 
-import SentierHiver from '@/assets/images/sentier-hiver.jpg';
+import { useTitle } from '@/lib/hooks/useTitle';
 
 export const Route = createLazyFileRoute('/faq')({
   component: Faq,
@@ -10,6 +10,7 @@ export const Route = createLazyFileRoute('/faq')({
 
 function Faq() {
   const { t } = useTranslation('faq');
+  useTitle(t('pageTitle'));
 
   const faqs = [
     { id: 1, question: t('questions.1.question'), answer: t('questions.1.answer') },
@@ -22,26 +23,6 @@ function Faq() {
 
   return (
     <div className="bg-white">
-      {/* <div className="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
-        <img
-          alt="Sentier en hiver"
-          src={SentierHiver}
-          className="absolute inset-0 -z-10 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 -z-10 bg-black opacity-50" />
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">{t('title')}</h2>
-          <p className="mt-6 text-lg leading-8 text-white">
-            <Trans
-              t={t}
-              i18nKey="subtitle"
-              components={{
-                phoneLink: <a className="text-primary underline-offset-4 hover:underline" />,
-              }}
-            />
-          </p>
-        </div>
-      </div> */}
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-4xl font-bold leading-10 tracking-tight md:text-5xl">{t('title')}</h2>
