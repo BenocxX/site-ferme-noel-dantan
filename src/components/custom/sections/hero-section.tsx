@@ -32,7 +32,7 @@ export function HeroSection() {
         </h1>
         <h4 className="mb-8 mt-4 text-wrap text-xl md:text-2xl">{t('heroSection.description')}</h4>
         <Link
-          to="/reservation"
+          to="/"
           className={buttonVariants({ size: 'lg', className: 'h-max gap-3 px-6 py-4 !text-lg' })}
         >
           {t('ctaButton')}

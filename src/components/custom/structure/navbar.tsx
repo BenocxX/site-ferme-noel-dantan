@@ -13,7 +13,7 @@ import { Menu } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 import { Close as SheetClose } from '@radix-ui/react-dialog';
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 
 import { Namespaces } from '@/i18n/i18n';
 import { cn } from '@/lib/utils';
@@ -27,12 +27,12 @@ const links: {
   href?: string;
 }[] = [
   {
-    i18nKey: 'home',
+    i18nKey: 'reservation',
     href: '/',
   },
   {
-    i18nKey: 'reservation',
-    href: '/reservation',
+    i18nKey: 'home',
+    href: '/about',
   },
   {
     i18nKey: 'faq',
@@ -42,6 +42,7 @@ const links: {
 
 function NavbarSheet() {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
 
   return (
     <Sheet>
@@ -65,10 +66,12 @@ function NavbarSheet() {
                   key={i}
                   to={link.href}
                   search={{ id: link.id, offset: link.offset }}
-                  className={buttonVariants({
-                    variant: 'ghost',
-                    className: '!justify-start',
-                  })}
+                  className={cn(
+                    buttonVariants({
+                      variant: pathname === link.href ? 'secondary' : 'ghost',
+                      className: '!justify-start',
+                    })
+                  )}
                 >
                   {t(link.i18nKey, { ns: 'navbar' })}
                 </Link>
@@ -86,6 +89,7 @@ function NavbarSheet() {
 
 export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const { t } = useTranslation();
+  const { pathname } = useLocation();
 
   return (
     <nav
@@ -104,10 +108,13 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLDivElem
               key={i}
               to={link.href}
               search={{ id: link.id, offset: link.offset }}
-              className={buttonVariants({
-                variant: 'link',
-                className: '!text-base font-normal text-white',
-              })}
+              className={cn(
+                buttonVariants({
+                  variant: 'link',
+                  className: '!text-base font-normal text-white',
+                }),
+                pathname === link.href ? 'underline' : ''
+              )}
             >
               {t(link.i18nKey, { ns: 'navbar' })}
             </Link>
