@@ -38,14 +38,15 @@ export function OfferSection() {
                   <p>“{t('offerSection.quote.text')}”</p>
                 </blockquote>
                 <figcaption className="mt-6 flex gap-x-4 text-sm leading-6">
-                  <img
+                  {/* <img
                     alt=""
                     src="https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-6/275421468_1572442069801405_6302698686172045318_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=7cASifAZNmcQ7kNvgFts1-v&_nc_ht=scontent-lga3-2.xx&oh=00_AYBKVQR65cNYrHv9d5g0nd-1VGfcfJOGEkOI8FhhPV8f1g&oe=6701EBCC"
                     className="h-6 w-6 flex-none rounded-full object-cover"
-                  />
+                  /> */}
                   <div>
-                    <span className="font-semibold">{t('offerSection.quote.person')}</span> -{' '}
-                    {t('offerSection.quote.job')}
+                    - <span className="font-semibold">{t('offerSection.quote.person')}</span>
+                    {/* <span className="font-semibold">{t('offerSection.quote.person')}</span> -{' '}
+                    {t('offerSection.quote.job')} */}
                   </div>
                 </figcaption>
               </figure>

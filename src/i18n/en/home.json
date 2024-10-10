@@ -1,5 +1,5 @@
 {
-  "pageTitle": "Ferme Noël d’Antan | Home",
+  "pageTitle": "Ferme Noël d'Antan | Home",
   "ctaButton": "Reserve your tree",
   "heroSection": {
     "title": {
@@ -12,11 +12,11 @@
   "offerSection": {
     "title": "Hundreds of trees",
     "subTitle": "A large selection",
-    "description": "Come walk through our Christmas tree forest and choose yours from hundreds of trees.",
+    "description": "Come take a walk in our Christmas tree forest and choose yours from hundreds of trees measuring between 4 and 8 feet tall.",
     "quote": {
-      "text": "Vel ultricies morbi odio facilisi ultrices accumsan donec lacus purus. Lectus nibh ullamcorper ac dictum justo in euismod. Risus aenean ut elit massa. In amet aliquet eget cras. Sem volutpat enim tristique.",
-      "person": "Mathis Côté",
-      "job": "Web developer"
+      "text": "Whether you are looking for a small tree for your apartment or a large tree for your house, you will find the perfect tree with us.",
+      "person": "Daniel",
+      "job": ""
     },
     "imgAlt": "Winter trail"
   },
