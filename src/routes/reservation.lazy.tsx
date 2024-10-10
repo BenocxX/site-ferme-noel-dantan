@@ -1,6 +1,5 @@
 import { TriangleAlert } from 'lucide-react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useTitle } from "@/lib/hooks/useTitle";
 
 import { createLazyFileRoute } from '@tanstack/react-router';
 
@@ -10,6 +9,8 @@ import { ReservationForm } from '@/components/custom/forms/reservation-form';
 import { SnowFaller } from '@/components/custom/snow-faller';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
+import { useTitle } from '@/lib/hooks/useTitle';
+
 export const Route = createLazyFileRoute('/reservation')({
   component: Reservation,
 });
@@ -17,7 +18,7 @@ export const Route = createLazyFileRoute('/reservation')({
 function Reservation() {
   const { t } = useTranslation('reservation');
 
-  useTitle(t("pageTitle"));
+  useTitle(t('pageTitle'));
 
   return (
     <div className="bg-secondary">
