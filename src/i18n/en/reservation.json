@@ -1,7 +1,12 @@
 {
-  "pageTitle": "Ferme Noël d’Antan | Reservation",
+  "metaTags": {
+    "title": "Ferme Noël d'Antan | Reservation",
+    "description": "Reserve your magical moment at Ferme Noël d'Antan now to pick your Christmas tree! Experience a unique family experience in our beautiful Christmas tree forest.",
+    "og:title": "Reservation for self-picking Christmas trees"
+  },
   "title": "Reservation for self-picking",
   "information": "It is important to reserve the date and time for your self-picking. 10 parking spaces are available for each 30-minute slot. For more information, please contact us at <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
+  "imageAlt": "A family in a sled pulled by a large reindeer",
   "rulesAlert": {
     "title": "No animals & cash only",
     "content": "For safety reasons, animals are not allowed on the site. In addition, we only accept cash, so make sure you have enough with you."

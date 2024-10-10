@@ -1,5 +1,9 @@
 {
-  "pageTitle": "Ferme Noël d'Antan | Foire aux questions",
+  "metaTags": {
+    "title": "Ferme Noël d'Antan | Foire aux questions",
+    "description": "Trouvez toutes les réponses à vos questions sur la Ferme Noël d'Antan dans notre section Foire aux questions. Pour toute autre information, n'hésitez pas à nous contacter et venez vivre la magie de Noël avec nous!",
+    "og:title": "Foire aux questions de la Ferme Noël d'Antan"
+  },
   "title": "Foire aux questions",
   "subtitle": "Voici les questions les plus fréquemment posées à propos de notre ferme de sapins de Noël. Pour plus d'informations, veuillez nous contacter au <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
   "questions": {

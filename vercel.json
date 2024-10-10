@@ -6,6 +6,16 @@
       "status": 200
     },
     {
+      "src": "/reservez-votre-autocueillette-de-sapin-de-noel",
+      "dest": "/",
+      "status": 200
+    },
+    {
+      "src": "/faq",
+      "dest": "/",
+      "status": 200
+    },
+    {
       "src": "/success",
       "dest": "/",
       "status": 200

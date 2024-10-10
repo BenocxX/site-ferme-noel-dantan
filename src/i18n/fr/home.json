@@ -1,5 +1,9 @@
 {
-  "pageTitle": "Ferme Noël d'Antan | Accueil",
+  "metaTags": {
+    "title": "Ferme Noël d'Antan | Accueil",
+    "description": "Découvrez la Ferme Noël d'Antan et choisissez vous-même votre sapin de Noël parmi des centaines d'arbres. Une équipe passionnée vous accueille pour vous aider à trouver le sapin idéal pour vos fêtes de Noël.",
+    "og:title": "Découvrez l'équipe passionnée de la Ferme Noël d'Antan!"
+  },
   "ctaButton": "Réservez votre sapin",
   "heroSection": {
     "title": {
@@ -7,7 +11,8 @@
       "line2": "votre sapin",
       "line3": "vous-même"
     },
-    "description": "Venez choisir et couper votre sapin de Noël!"
+    "description": "Venez choisir et couper votre sapin de Noël!",
+    "imageAlt": "La jolie grange de la ferme eneigée"
   },
   "offerSection": {
     "title": "Des centaines de sapins",
@@ -18,13 +23,19 @@
       "person": "Daniel",
       "job": ""
     },
-    "imgAlt": "Sentier d'hiver"
+    "imageAlt": "Le grand sentier de la ferme en hiver"
   },
   "teamSection": {
     "title": "Ferme Noël d'Antan",
     "subTitle": "Une équipe passionnée",
     "description": "Venez nous rencontrer et découvrez notre équipe passionnée par les sapins de Noël. Nous serons ravis de vous accueillir et de vous aider à trouver le sapin parfait pour les fêtes de fin d'année.",
-    "subDescription": "Nous sommes toujours à la recherche de nouveaux talents pour rejoindre notre équipe. Si vous avez une passion pour les sapins de Noël, n'hésitez pas à postuler. Nous serons ravis de vous rencontrer."
+    "subDescription": "Nous sommes toujours à la recherche de nouveaux talents pour rejoindre notre équipe. Si vous avez une passion pour les sapins de Noël, n'hésitez pas à postuler. Nous serons ravis de vous rencontrer.",
+    "imageAlts": {
+      "team1": "6 employés de la ferme dans la forêts",
+      "team2": "L'équipe de la ferme en train de festoyer autour d'un feu de camp",
+      "team3": "Daniel en train de conduire un tracteur rouge",
+      "team4": "Daniel et un ami devant les sapins"
+    }
   },
   "contactSection": {
     "title": "Restons en contact",

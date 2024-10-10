@@ -54,7 +54,7 @@ export function OfferSection() {
           </div>
           <div className="flex items-start justify-end lg:order-first">
             <img
-              alt={t('offerSection.imgAlt')}
+              alt={t('offerSection.imageAlt')}
               src={SentierHiver}
               width={2432}
               height={1442}

@@ -15,7 +15,7 @@ export function HeroSection() {
     <section className="relative h-[70vh] w-full overflow-hidden md:h-[80vh] lg:h-[90vh]">
       <img
         src={FermeHiver}
-        alt="Ferme hiver"
+        alt={t('heroSection.imageAlt')}
         className="h-full w-full object-cover object-[80%_0%] blur-[2px] lg:object-[50%_100%]"
       />
       <div className="pointer-events-none absolute left-0 top-0 h-full w-full blur-[1px]">

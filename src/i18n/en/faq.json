@@ -1,5 +1,9 @@
 {
-  "pageTitle": "Ferme Noël d'Antan | Frequently asked questions",
+  "metaTags": {
+    "title": "Ferme Noël d'Antan | Frequently asked questions",
+    "description": "Find all the answers to your questions about Ferme Noël d'Antan in our Frequently Asked Questions section. For more information, do not hesitate to contact us and come and experience the magic of Christmas with us!",
+    "og:title": "Frequently asked questions about Ferme Noël d'Antan"
+  },
   "title": "Frequently asked questions",
   "subtitle": "Here are the most frequently asked questions about our Christmas tree farm. For more information, please contact us at <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
   "questions": {
