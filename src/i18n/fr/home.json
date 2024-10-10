@@ -1,5 +1,5 @@
 {
-  "pageTitle": "Ferme Noël d’Antan | Accueil",
+  "pageTitle": "Ferme Noël d'Antan | Accueil",
   "ctaButton": "Réservez votre sapin",
   "heroSection": {
     "title": {
@@ -12,11 +12,11 @@
   "offerSection": {
     "title": "Des centaines de sapins",
     "subTitle": "Une grande sélection",
-    "description": "Venez vous promener dans notre forêt de sapins et choisissez le vôtre parmi des centaines d'arbres.",
+    "description": "Venez vous promener dans notre forêt de sapins et choisissez le vôtre parmi des centaines d'arbres mesurant entre 4 et 8 pieds de haut.",
     "quote": {
-      "text": "Vel ultricies morbi odio facilisi ultrices accumsan donec lacus purus. Lectus nibh ullamcorper ac dictum justo in euismod. Risus aenean ut elit massa. In amet aliquet eget cras. Sem volutpat enim tristique.",
-      "person": "Mathis Côté",
-      "job": "Développeur web"
+      "text": "Que vous cherchiez un petit sapin pour votre appartement ou un grand sapin pour votre maison, vous trouverez le sapin parfait chez nous.",
+      "person": "Daniel",
+      "job": ""
     },
     "imgAlt": "Sentier d'hiver"
   },
