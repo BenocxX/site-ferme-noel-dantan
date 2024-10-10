@@ -27,12 +27,12 @@ const links: {
   href?: string;
 }[] = [
   {
-    i18nKey: 'home',
+    i18nKey: 'reservation',
     href: '/',
   },
   {
-    i18nKey: 'reservation',
-    href: '/reservation',
+    i18nKey: 'home',
+    href: '/about',
   },
 ];
 

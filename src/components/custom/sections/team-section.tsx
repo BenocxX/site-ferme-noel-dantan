@@ -30,7 +30,7 @@ export function TeamSection() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row">
               <Button asChild size="lg" className="gap-2">
-                <Link to="/reservation">
+                <Link to="/">
                   {t('ctaButton')}
                   <TreePine className="h-5" />
                 </Link>

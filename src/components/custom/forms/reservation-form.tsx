@@ -104,7 +104,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
       return axios.post('/api/reservations-by-date', data);
     },
     onSuccess: async () => {
-      await navigate({ from: '/reservation', to: '/' });
+      await navigate({ from: '/', to: '/about' });
     },
     onError: async (error: AxiosError) => {
       const result = error.response?.data as { error: string } | undefined;
