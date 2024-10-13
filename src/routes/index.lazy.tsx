@@ -80,7 +80,7 @@ function Reservation() {
             allowfullscreen
             // eslint-disable-next-line react/no-unknown-property
             referrerpolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB4F-KXw0v_gSgf8Q-UOwpjytVpEWKgOBE&q=Autocueillette+de+sapin+-+Ferme+Noël+d+antan"
+            src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&q=Autocueillette+de+sapin+-+Ferme+Noël+d+antan`}
           ></iframe>
         </div>
       </div>
