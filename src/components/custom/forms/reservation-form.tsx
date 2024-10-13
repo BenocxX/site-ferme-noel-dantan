@@ -24,6 +24,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import {
   Select,
@@ -71,6 +72,7 @@ const rules: {
 ];
 
 const FormSchema = z.object({
+  email: z.string().email(),
   date: z.number(),
   reservationId: z.coerce
     .number()
@@ -101,10 +103,15 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
   // Mutation to create a reservation (submit the form)
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof FormSchema>) => {
-      return axios.post('/api/reservations-by-date', data);
+      return axios.post<{ hash: string; email: string }>('/api/reservations-by-date', data);
     },
-    onSuccess: async () => {
-      await navigate({ from: '/', to: '/about' });
+    onSuccess: async ({ data }) => {
+      // TODO: Redirect to a confirmation page
+      await navigate({
+        from: '/',
+        to: '/confirmation',
+        search: data,
+      });
     },
     onError: async (error: AxiosError) => {
       const result = error.response?.data as { error: string } | undefined;
@@ -297,30 +304,47 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                   </Popover>
                 </h3>
                 <div className="mt-[9px] flex flex-col gap-4">
-                  <FormField
-                    control={form.control}
-                    name="reservationId"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t('timeOfReservation.label')}</FormLabel>
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value ? field.value.toString() : undefined}
-                          disabled={mutation.isPending}
-                        >
+                  <div className="flex flex-col gap-2 lg:flex-row">
+                    <FormField
+                      control={form.control}
+                      name="reservationId"
+                      render={({ field }) => (
+                        <FormItem className="flex-1">
+                          <FormLabel>{t('timeOfReservation.label')}</FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value ? field.value.toString() : undefined}
+                            disabled={mutation.isPending}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="border-0 shadow">
+                                <SelectValue placeholder={t('timeOfReservation.placeholder')} />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <ReservationSpotsItems
+                                reservationSpotsQuery={reservationSpotsQuery}
+                              />
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem className="flex-1">
+                          <FormLabel>{t('email.label')}</FormLabel>
                           <FormControl>
-                            <SelectTrigger className="border-0 shadow">
-                              <SelectValue placeholder={t('timeOfReservation.placeholder')} />
-                            </SelectTrigger>
+                            <Input placeholder={t('email.placeholder')} {...field} />
                           </FormControl>
-                          <SelectContent>
-                            <ReservationSpotsItems reservationSpotsQuery={reservationSpotsQuery} />
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                   <div className="flex flex-col gap-2 rounded-md bg-white px-4 pb-4 pt-2 shadow">
                     <FormField
                       control={form.control}

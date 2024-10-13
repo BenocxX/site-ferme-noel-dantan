@@ -16,6 +16,10 @@
     "label": "Heure de la réservation",
     "placeholder": "Sélectionnez une heure"
   },
+  "email": {
+    "label": "Adresse courriel",
+    "placeholder": "Entrez votre courriel"
+  },
   "rules": {
     "label": "Règlements",
     "noAnimals": "Je ne vais pas amener d'animaux avec moi",

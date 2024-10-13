@@ -26,11 +26,22 @@ model OpenDate {
   reservations Reservation[]
 }
 
+/// Represents a reservation spot for a specific half hour on a specific date (10 places)
 model Reservation {
-  id         Int      @id @default(autoincrement())
-  halfHourId Int
-  openDateId Int
-  count      Int
-  halfHour   HalfHour @relation(fields: [halfHourId], references: [id])
-  openDate   OpenDate @relation(fields: [openDateId], references: [id])
+  id                Int                 @id @default(autoincrement())
+  halfHourId        Int
+  openDateId        Int
+  count             Int
+  halfHour          HalfHour            @relation(fields: [halfHourId], references: [id])
+  openDate          OpenDate            @relation(fields: [openDateId], references: [id])
+  UniqueReservation UniqueReservation[]
+}
+
+/// Represents a unique reservation. This is used to cancel a reservation
+model UniqueReservation {
+  id            Int    @id @default(autoincrement())
+  reservationId Int
+  hash          String @unique
+
+  reservation Reservation @relation(fields: [reservationId], references: [id])
 }

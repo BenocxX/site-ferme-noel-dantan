@@ -16,6 +16,10 @@
     "label": "Time of reservation",
     "placeholder": "Select a time"
   },
+  "email": {
+    "label": "Email address",
+    "placeholder": "Enter your email"
+  },
   "rules": {
     "label": "Rules",
     "noAnimals": "I will not bring any animals with me",

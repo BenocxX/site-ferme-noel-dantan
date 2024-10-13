@@ -6,7 +6,7 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 
 import FamilleAnimal from '@/assets/images/famille-animal-hiver.jpg';
 
-// import { ReservationForm } from '@/components/custom/forms/reservation-form';
+import { ReservationForm } from '@/components/custom/forms/reservation-form';
 import { SnowFaller } from '@/components/custom/snow-faller';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
@@ -59,11 +59,11 @@ function Reservation() {
               <AlertTitle>{t('rulesAlert.title')}</AlertTitle>
               <AlertDescription>{t('rulesAlert.content')}</AlertDescription>
             </Alert>
-            <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
+            {/* <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
               <h4 className="text-center text-3xl font-semibold">{t('tempDisabled.title')}</h4>
               <p className="text-center">{t('tempDisabled.description')}</p>
-            </div>
-            {/* <ReservationForm /> */}
+            </div> */}
+            <ReservationForm />
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import { z } from 'zod';
 
 import { PrismaClient } from '@prisma/client';
@@ -67,7 +68,7 @@ export async function GET(request) {
  */
 export async function POST(request) {
   const body = await request.json();
-  const { reservationId: id } = body;
+  const { reservationId: id, email } = body;
 
   const reservation = await prisma.reservation.findFirst({
     where: { id },
@@ -81,6 +82,44 @@ export async function POST(request) {
     return json({ error: 'reservationIsFull' }, { status: 400 });
   }
 
+  const hash = await createUniqueReservation({ reservation, email });
+  await incrementReservationCount({ reservation });
+
+  // TODO: Send email
+
+  return json({ hash, email }, { status: 200 });
+}
+
+async function createUniqueReservation({ reservation, email }) {
+  // It's ok if this is public, we just need a secret to hash the reservation to avoid humans from guessing the hash
+  const secret = 'ferme-noel-dantan';
+  const hash = crypto
+    .createHmac('sha256', secret)
+    .update(
+      `${reservation.id}-${reservation.halfHourId}-${reservation.openDateId}-${email}-${new Date().getTime()}`
+    )
+    .digest('hex');
+
+  // If we are very unlucky and the hash already exists, we can just return an error. This will never happen
+  if (await prisma.uniqueReservation.findFirst({ where: { hash } })) {
+    return json({ error: 'unknowError' }, { status: 500 });
+  }
+
+  await prisma.uniqueReservation.create({
+    data: {
+      hash,
+      reservation: {
+        connect: {
+          id: reservation.id,
+        },
+      },
+    },
+  });
+
+  return hash;
+}
+
+async function incrementReservationCount({ reservation }) {
   await prisma.reservation.update({
     where: {
       id: reservation.id,
@@ -91,6 +130,4 @@ export async function POST(request) {
       },
     },
   });
-
-  return new Response(null, { status: 204 });
 }

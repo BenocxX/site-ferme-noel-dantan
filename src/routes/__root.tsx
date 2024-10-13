@@ -21,7 +21,7 @@ function Root() {
     <>
       <div className="flex min-h-screen flex-col overflow-x-hidden">
         <Navbar className="sticky top-0 z-50" />
-        <main className="relativeflex flex-1 flex-col overflow-x-hidden">
+        <main className="relative flex flex-1 flex-col overflow-x-hidden">
           <Outlet />
         </main>
         <Footer />
