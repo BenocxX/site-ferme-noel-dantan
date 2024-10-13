@@ -20,6 +20,7 @@ async function main() {
   // ];
   // let halfHourId = 1;
   // for (const halfHour of halfHoursStrings) {
+  //   console.log(`Creating halfHour ${halfHour}`);
   //   await prisma.halfHour.upsert({
   //     where: { id: halfHourId },
   //     update: {},
@@ -29,9 +30,10 @@ async function main() {
   //   });
   //   halfHourId++;
   // }
-  // const startDate = new Date(2024, 10, 22);
+  // const startDate = new Date(2024, 10, 29);
   // const endDate = new Date(2024, 11, 24);
   // for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
+  //   console.log(`Creating openDate ${date}`);
   //   await prisma.openDate.upsert({
   //     where: { date },
   //     update: {},
@@ -43,7 +45,9 @@ async function main() {
   // const openDates = await prisma.openDate.findMany();
   // const halfHours = await prisma.halfHour.findMany();
   // for (const openDate of openDates) {
+  //   console.log(`Creating reservations for ${openDate.date}`);
   //   for (const halfHour of halfHours) {
+  //     console.log(`- Creating reservation for ${openDate.date} ${halfHour.period}`);
   //     const reservation = await prisma.reservation.findFirst({
   //       where: {
   //         openDateId: openDate.id,
