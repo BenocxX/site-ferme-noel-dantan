@@ -41,7 +41,7 @@ export const Route = createFileRoute('/confirmation')({
 });
 
 function ConfirmationPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('confirmation');
   const navigate = useNavigate();
   const { hash, email } = Route.useSearch();
 
@@ -59,8 +59,8 @@ function ConfirmationPage() {
     const promise = mutation.mutateAsync();
 
     toast.promise(promise, {
-      loading: 'Cancellation en cours...',
-      success: 'Cancellation réussie',
+      loading: t('onCancelation.loading'),
+      success: t('onCancelation.success'),
       error: (error: AxiosError) => {
         const result = error.response?.data as { error: string } | undefined;
 
@@ -80,39 +80,33 @@ function ConfirmationPage() {
         <div className="px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pr-8 lg:pt-48 xl:col-span-6">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-900 sm:mt-10 sm:text-6xl">
-              Merci et à bientôt!
+              {t('title')}
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Votre réservation a été soumise avec succès. Vous devriez recevoir un email de
-              confirmation à l'adresse <span className="font-semibold text-gray-900">{email}</span>.
-              Au plaisir de vous voir bientôt!
+              {t('description1')} <span className="font-semibold text-gray-900">{email}</span>.{' '}
+              {t('description2')}
             </p>
             <div className="mt-10 flex flex-col items-center gap-x-6 gap-y-4 sm:flex-row">
               <Button asChild className="w-full gap-2 px-6 sm:w-max">
                 <Link to="/about">
-                  Retour à l'accueil <Home className="h-5" />
+                  {t('buttons.home')} <Home className="h-5" />
                 </Link>
               </Button>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="ghost" className="w-full sm:w-max">
-                    Annuler ma réservation
+                    {t('buttons.cancel')}
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      Êtes-vous sûr de vouloir annuler votre réservation?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Une fois annulée, d'autres clients pourront prendre votre place. Cependant,
-                      rien ne vous empêche de réserver à nouveau!
-                    </AlertDialogDescription>
+                    <AlertDialogTitle>{t('alert.title')}</AlertDialogTitle>
+                    <AlertDialogDescription>{t('alert.description')}</AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
-                    <AlertDialogCancel>Retour</AlertDialogCancel>
+                    <AlertDialogCancel>{t('alert.buttons.back')}</AlertDialogCancel>
                     <AlertDialogAction onClick={onCancelClick} className="gap-2">
-                      Confirmer l'annulation
+                      {t('alert.buttons.confirm')}
                       <TriangleAlert className="h-5" />
                     </AlertDialogAction>
                   </AlertDialogFooter>
@@ -123,7 +117,7 @@ function ConfirmationPage() {
         </div>
         <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
           <img
-            alt="Animal en hiver"
+            alt={t('imageAlt')}
             src={AnimalHiver}
             className="aspect-[3/2] w-full bg-gray-50 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
           />

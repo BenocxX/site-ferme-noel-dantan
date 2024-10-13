@@ -1,0 +1,22 @@
+{
+  "title": "Thank you and see you soon!",
+  "description1": "Your reservation has been successfully submitted. You should receive a confirmation email at the address",
+  "description2": "Looking forward to seeing you soon!",
+  "buttons": {
+    "home": "Back to home",
+    "cancel": "Cancel my reservation"
+  },
+  "alert": {
+    "title": "Are you sure you want to cancel your reservation?",
+    "description": "Once canceled, other customers can take your place. However, nothing prevents you from booking again!",
+    "buttons": {
+      "back": "Back",
+      "confirm": "Confirm cancellation"
+    }
+  },
+  "onCancelation": {
+    "loading": "Cancellation in progress...",
+    "success": "Cancellation successful"
+  },
+  "imageAlt": "Animal in winter"
+}

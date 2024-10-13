@@ -1,0 +1,22 @@
+{
+  "title": "Merci et à bientôt!",
+  "description1": "Votre réservation a été soumise avec succès. Vous devriez recevoir un email de confirmation à l'adresse",
+  "description2": "Au plaisir de vous voir bientôt!",
+  "buttons": {
+    "home": "Retour à l'accueil",
+    "cancel": "Annuler ma réservation"
+  },
+  "alert": {
+    "title": "Êtes-vous sûr de vouloir annuler votre réservation?",
+    "description": "Une fois annulée, d'autres clients pourront prendre votre place. Cependant, rien ne vous empêche de réserver à nouveau!",
+    "buttons": {
+      "back": "Retour",
+      "confirm": "Confirmer l'annulation"
+    }
+  },
+  "onCancelation": {
+    "loading": "Annulation en cours...",
+    "success": "Annulation réussie"
+  },
+  "imageAlt": "Animal en hiver"
+}
