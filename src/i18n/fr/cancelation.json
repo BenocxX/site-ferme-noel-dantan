@@ -1,0 +1,13 @@
+{
+  "title": "Annulation de réservation",
+  "description": "Vous vous apprêtez à annuler votre réservation. Êtes-vous sûr de vouloir continuer? Une fois la réservation annulée, d'autres clients pourront prendre votre place. Cependant, rien ne vous empêche de réserver à nouveau!",
+  "buttons": {
+    "cancel": "Annuler ma réservation",
+    "home": "Retour à l'accueil"
+  },
+  "onCancelation": {
+    "loading": "Annulation en cours...",
+    "success": "Annulation réussie"
+  },
+  "imageAlt": "Animal en hiver"
+}

@@ -29,7 +29,7 @@ export const Route = createFileRoute('/cancelation')({
 });
 
 function CancelationPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('cancelation');
   const navigate = useNavigate();
   const { hash } = Route.useSearch();
 
@@ -47,8 +47,8 @@ function CancelationPage() {
     const promise = mutation.mutateAsync();
 
     toast.promise(promise, {
-      loading: 'Cancellation en cours...',
-      success: 'Cancellation réussie',
+      loading: t('onCancelation.loading'),
+      success: t('onCancelation.success'),
       error: (error: AxiosError) => {
         const result = error.response?.data as { error: string } | undefined;
 
@@ -68,27 +68,23 @@ function CancelationPage() {
         <div className="px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pr-8 lg:pt-48 xl:col-span-6">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-900 sm:mt-10 sm:text-6xl">
-              Annulation de réservation
+              {t('title')}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Vous vous apprêtez à annuler votre réservation. Êtes-vous sûr de vouloir continuer?
-              Une fois la réservation annulée, d'autres clients pourront prendre votre place.
-              Cependant, rien ne vous empêche de réserver à nouveau!
-            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-600">{t('description')}</p>
             <div className="mt-10 flex flex-col items-center gap-x-6 gap-y-4 sm:flex-row">
               <Button onClick={onCancelClick} className="w-full gap-2 px-6 sm:w-max">
-                Annuler ma réservation
+                {t('buttons.cancel')}
                 <TriangleAlert className="h-5" />
               </Button>
               <Button asChild variant="ghost" className="w-full sm:w-max">
-                <Link to="/about">Retour à l'accueil</Link>
+                <Link to="/about">{t('buttons.home')}</Link>
               </Button>
             </div>
           </div>
         </div>
         <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
           <img
-            alt="Animal en hiver"
+            alt={t('imageAlt')}
             src={AnimalHiver}
             className="aspect-[3/2] w-full bg-gray-50 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
           />
