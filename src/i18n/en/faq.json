@@ -29,7 +29,7 @@
     },
     "6": {
       "question": "Where is the farm located?",
-      "answer": "We are located at 2423, 7th rang, Saint-Théodore-d'Acton."
+      "answer": "We are located at <addressLink>2423, 7th rang, Saint-Théodore-d'Acton.</addressLink>"
     }
   }
 }

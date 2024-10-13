@@ -29,7 +29,7 @@
     },
     "6": {
       "question": "Où se trouve la ferme?",
-      "answer": "Nous nous situons au 2423, 7e rang, Saint-Théodore-d'Acton."
+      "answer": "Nous nous situons au <addressLink>2423, 7e rang, Saint-Théodore-d'Acton.</addressLink>"
     }
   }
 }

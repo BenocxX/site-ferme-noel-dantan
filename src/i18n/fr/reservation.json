@@ -36,5 +36,9 @@
   "tempDisabled": {
     "title": "Réservation temporairement désactivé...",
     "description": "Le site est en cours de développement, le système de réservation sera prêt d'ici quelques semaines! Nous vous remercions de votre patience :)"
+  },
+  "whereSection": {
+    "title": "Où sommes-nous?",
+    "description": "Nous nous situons au <addressLink>2423, 7e rang, Saint-Théodore-d'Acton.</addressLink>. Utilisez cette carte interactive pour vous rendre à notre ferme!"
   }
 }

@@ -16,7 +16,7 @@ function Faq() {
     { id: 3, question: t('questions.3.question'), answer: t('questions.3.answer') },
     { id: 4, question: t('questions.4.question'), answer: t('questions.4.answer') },
     { id: 5, question: t('questions.5.question'), answer: t('questions.5.answer') },
-    { id: 6, question: t('questions.6.question'), answer: t('questions.6.answer') },
+    // { id: 6, question: t('questions.6.question'), answer: t('questions.6.answer') },
   ];
 
   return (
@@ -56,6 +56,25 @@ function Faq() {
                   <dd className="mt-2 text-base leading-7 text-foreground/60">{faq.answer}</dd>
                 </div>
               ))}
+              <div key={6}>
+                <dt className="text-base font-semibold leading-7">{t('questions.6.question')}</dt>
+                <dd className="mt-2 text-base leading-7 text-foreground/60">
+                  <Trans
+                    t={t}
+                    i18nKey="questions.6.answer"
+                    components={{
+                      addressLink: (
+                        <a
+                          className="text-primary underline-offset-4 hover:underline"
+                          target="_blank"
+                          rel="noreferrer"
+                          href="https://www.google.com/maps/place/Autocueillette+de+sapin+-+Ferme+No%C3%ABl+d+antan/@45.6882866,-72.6570754,14.29z/data=!4m6!3m5!1s0x4cc839f3eb53d541:0xe5fb58d9e9b4e82f!8m2!3d45.6843166!4d-72.6382783!16s%2Fg%2F11ql_3nk4h?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D"
+                        />
+                      ),
+                    }}
+                  />
+                </dd>
+              </div>
             </dl>
           </div>
         </div>

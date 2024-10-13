@@ -36,5 +36,9 @@
   "tempDisabled": {
     "title": "Reservation temporarily disabled...",
     "description": "The site is under development, the reservation system will be ready in a few weeks! We thank you for your patience :)"
+  },
+  "whereSection": {
+    "title": "Where are we?",
+    "description": "We are located at <addressLink>2423, 7th rang, Saint-Théodore-d'Acton.</addressLink>. Use this interactive map to get to our farm!"
   }
 }

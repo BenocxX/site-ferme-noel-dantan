@@ -8,6 +8,7 @@ import FamilleAnimal from '@/assets/images/famille-animal-hiver.jpg';
 
 import { ReservationForm } from '@/components/custom/forms/reservation-form';
 import { SnowFaller } from '@/components/custom/snow-faller';
+import { GoogleEmbeddedMap } from '@/components/custom/socials/GoogleEmbeddedMap';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export const Route = createLazyFileRoute('/')({
@@ -62,6 +63,7 @@ function Reservation() {
               <AlertTitle>{t('rulesAlert.title')}</AlertTitle>
               <AlertDescription>{t('rulesAlert.content')}</AlertDescription>
             </Alert>
+            {/* To disable the reservation system, uncomment the following block: */}
             {/* <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
               <h4 className="text-center text-3xl font-semibold">{t('tempDisabled.title')}</h4>
               <p className="text-center">{t('tempDisabled.description')}</p>
@@ -71,17 +73,25 @@ function Reservation() {
         </div>
       </div>
       <div className="bg-secondary">
-        <div className="container mx-auto py-16">
-          <iframe
-            width="600"
-            height="450"
-            style={{ border: 0 }}
-            loading="lazy"
-            allowfullscreen
-            // eslint-disable-next-line react/no-unknown-property
-            referrerpolicy="no-referrer-when-downgrade"
-            src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&q=Autocueillette+de+sapin+-+Ferme+Noël+d+antan`}
-          ></iframe>
+        <div className="container mx-auto py-8 lg:py-0">
+          <h2 className="text-center text-4xl sm:text-left">{t('whereSection.title')}</h2>
+          <p className="mb-4 mt-2 text-center text-muted-foreground sm:text-left">
+            <Trans
+              t={t}
+              i18nKey="whereSection.description"
+              components={{
+                addressLink: (
+                  <a
+                    className="text-primary underline-offset-4 hover:underline"
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.google.com/maps/place/Autocueillette+de+sapin+-+Ferme+No%C3%ABl+d+antan/@45.6882866,-72.6570754,14.29z/data=!4m6!3m5!1s0x4cc839f3eb53d541:0xe5fb58d9e9b4e82f!8m2!3d45.6843166!4d-72.6382783!16s%2Fg%2F11ql_3nk4h?entry=ttu&g_ep=EgoyMDI0MTAwOS4wIKXMDSoASAFQAw%3D%3D"
+                  />
+                ),
+              }}
+            />
+          </p>
+          <GoogleEmbeddedMap className="h-[50vh] w-full rounded-xl shadow md:h-[75vh]" />
         </div>
       </div>
     </>
