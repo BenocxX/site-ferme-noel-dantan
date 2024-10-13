@@ -2,7 +2,7 @@ import { TriangleAlert } from 'lucide-react';
 import { Helmet } from 'react-helmet';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { createLazyFileRoute } from '@tanstack/react-router';
+import { Link, createLazyFileRoute } from '@tanstack/react-router';
 
 import FamilleAnimal from '@/assets/images/famille-animal-hiver.jpg';
 
@@ -50,7 +50,10 @@ function Reservation() {
                 t={t}
                 i18nKey="information"
                 components={{
-                  phoneLink: <a className="text-primary" />,
+                  faqLink: (
+                    <Link to="/faq" className="text-primary underline-offset-4 hover:underline" />
+                  ),
+                  phoneLink: <a className="text-primary underline-offset-4 hover:underline" />,
                 }}
               />
             </p>
@@ -66,6 +69,9 @@ function Reservation() {
             <ReservationForm />
           </div>
         </div>
+      </div>
+      <div className="bg-secondary">
+        <div className="container mx-auto py-16">Google map</div>
       </div>
     </>
   );

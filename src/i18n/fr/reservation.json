@@ -5,7 +5,7 @@
     "og:title": "Réservation pour l'autocueillette de sapins de Noël"
   },
   "title": "Réservation d'autocueillette",
-  "information": "Il est important de réserver la date et l'heure pour votre autocueillette. 10 places de stationnement sont disponibles pour chaque tranche de 30 minutes. Pour plus d'informations, veuillez nous contacter au <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
+  "information": "Il est important de réserver la date et l'heure pour votre autocueillette. 10 places de stationnement sont disponibles pour chaque tranche de 30 minutes. Pour plus d'informations, veuillez lire notre <faqLink>FAQ</faqLink> ou contactez-nous au <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
   "imageAlt": "Une famille dans la luge d'une luge tirée par un grand reine",
   "rulesAlert": {
     "title": "Animaux interdis & argent comptant seulement",

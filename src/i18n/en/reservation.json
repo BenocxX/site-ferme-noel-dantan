@@ -5,7 +5,7 @@
     "og:title": "Reservation for self-picking Christmas trees"
   },
   "title": "Reservation for self-picking",
-  "information": "It is important to reserve the date and time for your self-picking. 10 parking spaces are available for each 30-minute slot. For more information, please contact us at <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
+  "information": "It is important to reserve the date and time for your self-picking. 10 parking spaces are available for each 30-minute slot. For more information, please read our <faqLink>FAQ</faqLink> or contact us at <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
   "imageAlt": "A family in a sled pulled by a large reindeer",
   "rulesAlert": {
     "title": "No animals & cash only",
