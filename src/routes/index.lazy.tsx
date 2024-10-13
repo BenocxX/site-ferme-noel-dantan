@@ -71,7 +71,18 @@ function Reservation() {
         </div>
       </div>
       <div className="bg-secondary">
-        <div className="container mx-auto py-16">Google map</div>
+        <div className="container mx-auto py-16">
+          <iframe
+            width="600"
+            height="450"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowfullscreen
+            // eslint-disable-next-line react/no-unknown-property
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB4F-KXw0v_gSgf8Q-UOwpjytVpEWKgOBE&q=Autocueillette+de+sapin+-+Ferme+Noël+d+antan"
+          ></iframe>
+        </div>
       </div>
     </>
   );
