@@ -9,6 +9,8 @@ import FamilleAnimal from '@/assets/images/famille-animal-hiver.jpg';
 // import { ReservationForm } from '@/components/custom/forms/reservation-form';
 import { SnowFaller } from '@/components/custom/snow-faller';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { CookieRefusedForm } from '@/components/custom/policies/cookie';
+import { useCookieConsent } from "@/lib/hooks/useCookieConsent";
 
 export const Route = createLazyFileRoute('/')({
   component: Reservation,
@@ -16,6 +18,7 @@ export const Route = createLazyFileRoute('/')({
 
 function Reservation() {
   const { t, i18n } = useTranslation('reservation');
+  const { hasConsent } = useCookieConsent();
 
   return (
     <>
@@ -59,11 +62,19 @@ function Reservation() {
               <AlertTitle>{t('rulesAlert.title')}</AlertTitle>
               <AlertDescription>{t('rulesAlert.content')}</AlertDescription>
             </Alert>
-            <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
-              <h4 className="text-center text-3xl font-semibold">{t('tempDisabled.title')}</h4>
-              <p className="text-center">{t('tempDisabled.description')}</p>
-            </div>
-            {/* <ReservationForm /> */}
+            {!hasConsent ? (
+              <>
+                {<CookieRefusedForm/>}
+              </>
+            ) : (
+              <> 
+                <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
+                  <h4 className="text-center text-3xl font-semibold">{t('tempDisabled.title')}</h4>
+                  <p className="text-center">{t('tempDisabled.description')}</p>
+                </div>
+                {/* <ReservationForm /> */}
+              </>
+            )}
           </div>
         </div>
       </div>

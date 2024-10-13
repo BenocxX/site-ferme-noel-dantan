@@ -6,6 +6,7 @@ import { Outlet, createRootRoute } from '@tanstack/react-router';
 
 import { Footer } from '@/components/custom/structure/footer';
 import { Navbar } from '@/components/custom/structure/navbar';
+import { CookieConsent } from '@/components/custom/policies/cookie';
 
 import { useI18nPersistence } from '@/lib/hooks/useI18nPersistence';
 
@@ -26,7 +27,7 @@ function Root() {
         </main>
         <Footer />
         <Toaster position="top-right" richColors closeButton className="toast" />
-        {/* <CookieConsent /> */}
+        {<CookieConsent/>}
       </div>
       <Suspense>
         <TanStackRouterDevtools />

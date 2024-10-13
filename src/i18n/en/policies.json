@@ -1,8 +1,46 @@
 {
+  "metaTags": {
+    "title": "Ferme Noël d'Antan | Privacy Policy",
+    "description": "Read our Privacy Policy to understand how we collect, use, and protect your personal information. Learn about your rights, data security, and cookie usage on our website.",
+    "og:title": "Read our Privacy Policy"
+  },
+  "title": "Privacy Policy",
+  "subtitle": "At Ferme Noël d'Antan, we are committed to protecting the privacy and security of your personal information in compliance with Quebec’s Law 25 regarding the protection of personal information.",
+  "effectiveDate": "Effective Date: October 17, 2024",
   "cookieConsent": {
     "text": "We use cookies to improve your browsing experience and to personalize content. By continuing to use our site, you consent to our use of cookies. For more information, please read our ",
     "privacyPolicy": "Privacy Policy",
     "accept": "Accept",
     "refuse": "Refuse"
+  },
+  "cookieDisabled": {
+    "title": "Reservations disabled until policies are accepted...",
+    "description": "For more information, please read our "
+  },
+  "sections": {
+    "1": {
+      "title": "Information We Collect",
+      "description": "We collect your email address when you reserve a spot on our calendar. This email is used only to send confirmation and reminder emails. Additionally, we collect your agreement to this privacy policy and the display language of the website you prefer. We store this agreement and display language preference in cookies and do not store your email address anywhere."
+    },
+    "2": {
+      "title": "Purpose of Data Collection",
+      "description": "Your email address is collected solely for sending reservation confirmations, reminders, and important updates related to your booking. We also collect your agreement to this privacy policy for compliance purposes and store it in cookies along with your preferred display language of the website. Once the emails are sent and the agreement is recorded in cookies, neither your email address nor your agreement is stored in our system."
+    },
+    "3": {
+      "title": "Data Storage and Security",
+      "description": "We do not store your email address in any database. Your agreement and display language preference are stored in cookies, which are secure and accessible only from your browser. The email communications are handled securely by third-party providers who adhere to the highest security standards, ensuring your information is processed securely and not retained after the email is sent."
+    },
+    "4": {
+      "title": "Third-Party Disclosure",
+      "description": "Your email address and the information stored in cookies (agreement to the privacy policy and display language preference) are not shared with third parties unless required to deliver email services. Any third-party providers involved comply with confidentiality agreements and Quebec's Law 25 on the protection of personal information."
+    },
+    "5": {
+      "title": "Your Rights",
+      "description": "In accordance with Quebec’s Law 25, you have the right to withdraw your consent to this policy and stop receiving emails by contacting us at <emailLink href=\"mailto:$t(common:contact.email.personal)\">$t(common:contact.email.personal)</emailLink>. Since we do not store your email address and only keep the agreement in cookies, there is no data to access or correct beyond what is stored in your browser."
+    },
+    "6": {
+      "title": "Contact Us",
+      "description": "If you have any questions or concerns about our privacy practices, please contact us at <emailLink href=\"mailto:$t(common:contact.email.personal)\">$t(common:contact.email.personal)</emailLink>."
+    }
   }
 }

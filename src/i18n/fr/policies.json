@@ -1,8 +1,46 @@
 {
+  "metaTags": {
+    "title": "Ferme Noël d'Antan | Politique de Confidentialité",
+    "description": "Consultez notre Politique de Confidentialité pour comprendre comment nous collectons, utilisons et protégeons vos informations personnelles. Découvrez vos droits, la sécurité des données et l'utilisation des cookies sur notre site web.",
+    "og:title": "Liser notre Politique de Confidentialité"
+  },
+  "title": "Politique de Confidentialité",
+  "subtitle": "Chez Ferme Noël d'Antan, nous nous engageons à protéger la confidentialité et la sécurité de vos renseignements personnels conformément à la Loi 25 du Québec sur la protection des renseignements personnels.",
+  "effectiveDate": "Date d’entrée en vigueur: 17 octobre 2024",
   "cookieConsent": {
     "text": "Nous utilisons des cookies pour améliorer votre expérience de navigation et personnaliser le contenu. En continuant à utiliser notre site, vous consentez à notre utilisation des cookies. Pour plus d'informations, veuillez lire notre ",
     "privacyPolicy": "Politique de confidentialité",
     "accept": "Accepter",
     "refuse": "Refuser"
+  },
+  "cookieDisabled": {
+    "title": "Réservations désactivées jusqu'à l'acceptation des politiques...",
+    "description": "Pour plus d'informations, veuillez lire notre "
+  },
+  "sections": {
+    "1": {
+      "title": "Renseignements que nous collectons",
+      "description": "Nous recueillons votre adresse courriel lorsque vous réservez une place sur notre calendrier. Cette adresse courriel est utilisée uniquement pour envoyer des courriels de confirmation et de rappel. De plus, nous recueillons votre consentement à cette politique de confidentialité et la langue d'affichage du site Web que vous préférez. Nous stockons cet accord et la préférence de langue d'affichage dans des cookies, et nous ne stockons pas votre adresse courriel."
+    },
+    "2": {
+      "title": "Objectif de la collecte des données",
+      "description": "Votre adresse courriel est utilisée exclusivement pour l’envoi de confirmations de réservation, de rappels et de mises à jour importantes liées à votre réservation. Nous collectons également votre consentement à cette politique de confidentialité à des fins de conformité, que nous stockons dans des cookies avec votre langue d'affichage préférée du site Web. Une fois les courriels envoyés et le consentement enregistré dans les cookies, ni votre adresse courriel ni votre consentement ne sont stockés dans notre système."
+    },
+    "3": {
+      "title": "Stockage et sécurité des données",
+      "description": "Nous ne stockons pas votre adresse courriel dans notre base de données. Votre consentement et la langue d'affichage préférée sont stockés dans des cookies, qui sont sécurisés et accessibles uniquement depuis votre navigateur. Les communications par courriel sont gérées de manière sécurisée par des fournisseurs tiers qui respectent les normes de sécurité les plus élevées, garantissant que vos informations sont traitées en toute sécurité et ne sont pas conservées après l'envoi des courriels."
+    },
+    "4": {
+      "title": "Divulgation à des tiers",
+      "description": "Votre adresse courriel et les informations stockées dans des cookies (consentement à la politique de confidentialité et préférence de langue d'affichage) ne sont partagées avec des tiers que si cela est nécessaire pour l’envoi des courriels. Les fournisseurs tiers impliqués respectent des accords de confidentialité et se conforment à la Loi 25 du Québec sur la protection des renseignements personnels."
+    },
+    "5": {
+      "title": "Vos droits",
+      "description": "Conformément à la Loi 25 du Québec, vous avez le droit de retirer votre consentement à cette politique et de cesser de recevoir des courriels en nous contactant à <emailLink href=\"mailto:$t(common:contact.email.personal)\">$t(common:contact.email.personal)</emailLink>. Comme nous ne stockons pas votre adresse courriel et que nous ne conservons le consentement que dans des cookies, il n'y a pas de données à consulter ou à corriger en dehors de ce qui est stocké dans votre navigateur."
+    },
+    "6": {
+      "title": "Nous contacter",
+      "description": "Si vous avez des questions ou des préoccupations concernant nos pratiques en matière de confidentialité, veuillez nous contacter à <emailLink href=\"mailto:$t(common:contact.email.personal)\">$t(common:contact.email.personal)</emailLink>."
+    }
   }
 }
