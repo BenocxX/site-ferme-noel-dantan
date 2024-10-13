@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { Home, TriangleAlert } from 'lucide-react';
+import { TriangleAlert } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -10,46 +10,34 @@ import { Link, createFileRoute, redirect, useNavigate } from '@tanstack/react-ro
 import AnimalHiver from '@/assets/images/animal-hiver.jpg';
 
 import { SnowFaller } from '@/components/custom/snow-faller';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 
-const confirmationSearch = z.object({
+const cancelationSearch = z.object({
   hash: z.string().catch(''),
-  email: z.string().catch(''),
 });
 
-export const Route = createFileRoute('/confirmation')({
-  validateSearch: confirmationSearch,
+export const Route = createFileRoute('/cancelation')({
+  validateSearch: cancelationSearch,
   beforeLoad: async ({ search: { hash } }) => {
     try {
       await axios.get('/api/cancel-reservation', { params: { hash } });
     } catch (error) {
-      throw redirect({ to: '/', from: '/confirmation' });
+      throw redirect({ to: '/', from: '/cancelation' });
     }
   },
-  component: ConfirmationPage,
+  component: CancelationPage,
 });
 
-function ConfirmationPage() {
+function CancelationPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { hash, email } = Route.useSearch();
+  const { hash } = Route.useSearch();
 
   const mutation = useMutation({
     mutationFn: () => axios.post('/api/cancel-reservation', { hash }),
     onSuccess: async () => {
       await navigate({
-        from: '/confirmation',
+        from: '/cancelation',
         to: '/',
       });
     },
@@ -80,44 +68,21 @@ function ConfirmationPage() {
         <div className="px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pr-8 lg:pt-48 xl:col-span-6">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-900 sm:mt-10 sm:text-6xl">
-              Merci et à bientôt!
+              Annulation de réservation
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Votre réservation a été soumise avec succès. Vous devriez recevoir un email de
-              confirmation à l'adresse <span className="font-semibold text-gray-900">{email}</span>.
-              Au plaisir de vous voir bientôt!
+              Vous vous apprêtez à annuler votre réservation. Êtes-vous sûr de vouloir continuer?
+              Une fois la réservation annulée, d'autres clients pourront prendre votre place.
+              Cependant, rien ne vous empêche de réserver à nouveau!
             </p>
             <div className="mt-10 flex flex-col items-center gap-x-6 gap-y-4 sm:flex-row">
-              <Button asChild className="w-full gap-2 px-6 sm:w-max">
-                <Link to="/about">
-                  Retour à l'accueil <Home className="h-5" />
-                </Link>
+              <Button onClick={onCancelClick} className="w-full gap-2 px-6 sm:w-max">
+                Annuler ma réservation
+                <TriangleAlert className="h-5" />
               </Button>
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="ghost" className="w-full sm:w-max">
-                    Annuler ma réservation
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      Êtes-vous sûr de vouloir annuler votre réservation?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      Une fois annulée, d'autres clients pourront prendre votre place. Cependant,
-                      rien ne vous empêche de réserver à nouveau!
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Retour</AlertDialogCancel>
-                    <AlertDialogAction onClick={onCancelClick} className="gap-2">
-                      Confirmer l'annulation
-                      <TriangleAlert className="h-5" />
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
+              <Button asChild variant="ghost" className="w-full sm:w-max">
+                <Link to="/about">Retour à l'accueil</Link>
+              </Button>
             </div>
           </div>
         </div>

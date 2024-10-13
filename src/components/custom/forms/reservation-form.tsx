@@ -106,7 +106,6 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
       return axios.post<{ hash: string; email: string }>('/api/reservations-by-date', data);
     },
     onSuccess: async ({ data }) => {
-      // TODO: Redirect to a confirmation page
       await navigate({
         from: '/',
         to: '/confirmation',

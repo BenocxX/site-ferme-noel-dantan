@@ -24,9 +24,28 @@ export function getParam(request, key) {
 const prisma = new PrismaClient();
 
 /**
+ * Checks if the reservation exists.
+ */
+export async function GET(request) {
+  const hash = getParam(request, 'hash');
+
+  if (!hash) {
+    return json({ error: 'hashMissing' }, { status: 400 });
+  }
+
+  const uniqueReservation = await prisma.uniqueReservation.findFirst({ where: { hash } });
+
+  if (!uniqueReservation) {
+    return json({ error: 'reservationNotFound' }, { status: 404 });
+  }
+
+  return json({ success: true }, { status: 200 });
+}
+
+/**
  * Will cancel a reservation based on the hash.
  */
-export async function DELETE(request) {
+export async function POST(request) {
   const { hash } = await request.json();
 
   const uniqueReservation = await prisma.uniqueReservation.findFirst({
