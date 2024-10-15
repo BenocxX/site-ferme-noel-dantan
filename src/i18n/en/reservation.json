@@ -40,5 +40,9 @@
   "whereSection": {
     "title": "Where are we?",
     "description": "We are located at <addressLink>2423, 7th rang, Saint-Théodore-d'Acton.</addressLink>. Use this interactive map to get to our farm!"
+  },
+  "cookieDisabled": {
+    "title": "Reservations disabled until policies are accepted...",
+    "description": "For more information, please read our <policyLink>Privacy Policy</policyLink>."
   }
 }

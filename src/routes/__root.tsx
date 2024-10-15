@@ -4,7 +4,7 @@ import { Toaster } from 'sonner';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 
-import { CookieConsent } from '@/components/custom/policies/cookie';
+import { CookieConsent } from '@/components/custom/policies/cookie-consent';
 import { Footer } from '@/components/custom/structure/footer';
 import { Navbar } from '@/components/custom/structure/navbar';
 

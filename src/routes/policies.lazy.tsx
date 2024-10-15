@@ -3,12 +3,17 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { createLazyFileRoute } from '@tanstack/react-router';
 
+import { Button } from '@/components/ui/button';
+
+import { useCookieConsent } from '@/lib/hooks/useCookieConsent';
+
 export const Route = createLazyFileRoute('/policies')({
   component: Policies,
 });
 
 function Policies() {
   const { t, i18n } = useTranslation('policies');
+  const { accept, refuse, hasConsent, hasRefused, hasAccepted } = useCookieConsent();
 
   const sections = [
     { id: 1, title: t('sections.1.title'), description: t('sections.1.description') },
@@ -53,7 +58,7 @@ function Policies() {
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://www.fermenoeldantan.ca/ferme-hiver.jpg" />
         <meta property="og:image:alt" content={t('heroSection.imageAlt', { ns: 'home' })} />
-        <meta property="og:url" content="https://www.fermenoeldantan.ca/faq" />
+        <meta property="og:url" content="https://www.fermenoeldantan.ca/policies" />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
       <div className="bg-white">
@@ -68,9 +73,23 @@ function Policies() {
               <Trans t={t} i18nKey="effectiveDate" />
             </p>
           </div>
-          <p className="mt-4 text-base leading-7 text-foreground/60">
+          <p className="mx-auto mt-4 text-center text-base leading-7 text-foreground/60 md:max-w-[44rem] lg:max-w-[52rem]">
             <Trans t={t} i18nKey="subtitle" />
           </p>
+          {hasConsent && (
+            <div className="mt-8 flex justify-center">
+              {hasRefused && (
+                <Button onClick={accept} className="bg-gray-900 hover:bg-gray-700">
+                  {t('cookieConsent.acceptPolicy')}
+                </Button>
+              )}
+              {hasAccepted && (
+                <Button onClick={refuse} className="bg-gray-900 hover:bg-gray-700">
+                  {t('cookieConsent.refusePolicy')}
+                </Button>
+              )}
+            </div>
+          )}
           <div className="mt-20">
             <dl className="space-y-16 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-16 sm:space-y-0 lg:grid-cols-3 lg:gap-x-10">
               {sections.map((policy) => (

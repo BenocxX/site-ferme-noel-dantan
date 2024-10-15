@@ -11,11 +11,9 @@
     "text": "We use cookies to improve your browsing experience and to personalize content. By continuing to use our site, you consent to our use of cookies. For more information, please read our ",
     "privacyPolicy": "Privacy Policy",
     "accept": "Accept",
-    "refuse": "Refuse"
-  },
-  "cookieDisabled": {
-    "title": "Reservations disabled until policies are accepted...",
-    "description": "For more information, please read our "
+    "refuse": "Refuse",
+    "acceptPolicy": "Accept the privacy policy",
+    "refusePolicy": "Refuse the privacy policy"
   },
   "sections": {
     "1": {

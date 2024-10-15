@@ -1,4 +1,4 @@
-import { buttonVariants } from '../../ui/button';
+import { Button, buttonVariants } from '../../ui/button';
 import { Separator } from '../../ui/separator';
 import {
   Sheet,
@@ -66,19 +66,13 @@ function NavbarSheet() {
           <div className="flex flex-col">
             {links.map((link, i) => (
               <SheetClose key={i} asChild>
-                <Link
-                  key={i}
-                  to={link.href}
-                  search={{ id: link.id, offset: link.offset }}
-                  className={cn(
-                    buttonVariants({
-                      variant: pathname === link.href ? 'secondary' : 'ghost',
-                      className: '!justify-start',
-                    })
-                  )}
+                <Button
+                  asChild
+                  variant={pathname === link.href ? 'secondary' : 'ghost'}
+                  className="!justify-start"
                 >
-                  {t(link.i18nKey, { ns: 'navbar' })}
-                </Link>
+                  <Link to={link.href}>{t(link.i18nKey, { ns: 'navbar' })}</Link>
+                </Button>
               </SheetClose>
             ))}
           </div>
@@ -108,20 +102,17 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLDivElem
         <h4 className="text-2xl font-medium md:text-3xl">{t('companyName')}</h4>
         <div className="hidden items-center pl-6 md:flex">
           {links.map((link, i) => (
-            <Link
+            <Button
               key={i}
-              to={link.href}
-              search={{ id: link.id, offset: link.offset }}
+              asChild
+              variant="link"
               className={cn(
-                buttonVariants({
-                  variant: 'link',
-                  className: '!text-base font-normal text-white',
-                }),
+                '!text-base font-normal text-white',
                 pathname === link.href ? 'underline' : ''
               )}
             >
-              {t(link.i18nKey, { ns: 'navbar' })}
-            </Link>
+              <Link to={link.href}>{t(link.i18nKey, { ns: 'navbar' })}</Link>
+            </Button>
           ))}
         </div>
       </div>

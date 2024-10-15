@@ -6,11 +6,11 @@ import { Link, createLazyFileRoute } from '@tanstack/react-router';
 
 import FamilleAnimal from '@/assets/images/famille-animal-hiver.jpg';
 
-import { ReservationForm } from '@/components/custom/forms/reservation-form';
-import { CookieRefusedForm } from '@/components/custom/policies/cookie';
+// import { ReservationForm } from '@/components/custom/forms/reservation-form';
 import { SnowFaller } from '@/components/custom/snow-faller';
 import { GoogleEmbeddedMap } from '@/components/custom/socials/GoogleEmbeddedMap';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Button } from '@/components/ui/button';
 
 import { useCookieConsent } from '@/lib/hooks/useCookieConsent';
 
@@ -20,7 +20,6 @@ export const Route = createLazyFileRoute('/')({
 
 function Reservation() {
   const { t, i18n } = useTranslation('reservation');
-  const { hasConsent } = useCookieConsent();
 
   return (
     <>
@@ -67,17 +66,7 @@ function Reservation() {
               <AlertTitle>{t('rulesAlert.title')}</AlertTitle>
               <AlertDescription>{t('rulesAlert.content')}</AlertDescription>
             </Alert>
-            {!hasConsent ? (
-              <>{<CookieRefusedForm />}</>
-            ) : (
-              <>
-                <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
-                  <h4 className="text-center text-3xl font-semibold">{t('tempDisabled.title')}</h4>
-                  <p className="text-center">{t('tempDisabled.description')}</p>
-                </div>
-                {/* <ReservationForm /> */}
-              </>
-            )}
+            <FormSection />
           </div>
         </div>
       </div>
@@ -105,4 +94,47 @@ function Reservation() {
       </div>
     </>
   );
+}
+
+function FormSection() {
+  const { t } = useTranslation('reservation');
+  const { hasRefused, hasAccepted, accept } = useCookieConsent();
+
+  if (!hasAccepted) {
+    return (
+      <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
+        <h4 className="text-center text-3xl font-semibold">{t('cookieDisabled.title')}</h4>
+        <p className="text-sm leading-6 text-gray-900">
+          <Trans
+            t={t}
+            i18nKey="cookieDisabled.description"
+            components={{
+              policyLink: (
+                <Link className="text-primary underline-offset-4 hover:underline" to="/policies" />
+              ),
+            }}
+          />
+        </p>
+        {hasRefused && (
+          <div className="mt-4 space-x-4">
+            <Button onClick={accept} className="bg-gray-900 hover:bg-gray-700">
+              {t('cookieConsent.acceptPolicy', { ns: 'policies' })}
+            </Button>
+            <Button asChild variant="ghost">
+              <Link to="/policies">{t('cookieConsent.privacyPolicy', { ns: 'policies' })}</Link>
+            </Button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex h-full flex-col items-center justify-center gap-4 rounded-xl bg-white px-8 py-4 shadow">
+      <h4 className="text-center text-3xl font-semibold">{t('tempDisabled.title')}</h4>
+      <p className="text-center">{t('tempDisabled.description')}</p>
+    </div>
+  );
+
+  // return <ReservationForm />;
 }
