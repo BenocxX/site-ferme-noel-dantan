@@ -15,34 +15,12 @@ import { useTranslation } from 'react-i18next';
 import { Close as SheetClose } from '@radix-ui/react-dialog';
 import { Link, useLocation } from '@tanstack/react-router';
 
-import { Namespaces } from '@/i18n/i18n';
+import { getLinks } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
 import { Footer } from './footer';
 
-const links: {
-  i18nKey: keyof Namespaces['navbar'];
-  id?: string;
-  offset?: number;
-  href?: string;
-}[] = [
-  {
-    i18nKey: 'reservation',
-    href: '/',
-  },
-  {
-    i18nKey: 'home',
-    href: '/about',
-  },
-  {
-    i18nKey: 'faq',
-    href: '/faq',
-  },
-  {
-    i18nKey: 'policies',
-    href: '/policies',
-  },
-];
+const links = getLinks();
 
 function NavbarSheet() {
   const { t } = useTranslation();
@@ -78,7 +56,7 @@ function NavbarSheet() {
           </div>
         </SheetHeader>
         <SheetFooter className="mt-auto">
-          <Footer />
+          <Footer hideLinks />
         </SheetFooter>
       </SheetContent>
     </Sheet>
@@ -101,19 +79,21 @@ export function Navbar({ className, ...props }: React.HTMLAttributes<HTMLDivElem
         <NavbarSheet />
         <h4 className="text-2xl font-medium md:text-3xl">{t('companyName')}</h4>
         <div className="hidden items-center pl-6 md:flex">
-          {links.map((link, i) => (
-            <Button
-              key={i}
-              asChild
-              variant="link"
-              className={cn(
-                '!text-base font-normal text-white',
-                pathname === link.href ? 'underline' : ''
-              )}
-            >
-              <Link to={link.href}>{t(link.i18nKey, { ns: 'navbar' })}</Link>
-            </Button>
-          ))}
+          {links
+            .filter((link) => !link.hideInNavbar)
+            .map((link, i) => (
+              <Button
+                key={i}
+                asChild
+                variant="link"
+                className={cn(
+                  '!text-base font-normal text-white',
+                  pathname === link.href ? 'underline' : ''
+                )}
+              >
+                <Link to={link.href}>{t(link.i18nKey, { ns: 'navbar' })}</Link>
+              </Button>
+            ))}
         </div>
       </div>
       <div className="flex items-center gap-2">

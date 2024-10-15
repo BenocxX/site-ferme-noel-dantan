@@ -21,6 +21,26 @@
       "status": 200
     },
     {
+      "src": "/policies",
+      "dest": "/",
+      "status": 200
+    },
+    {
+      "src": "/politique-de-cookies-ca",
+      "dest": "/",
+      "status": 200
+    },
+    {
+      "src": "/cancelation",
+      "dest": "/",
+      "status": 200
+    },
+    {
+      "src": "/confirmation",
+      "dest": "/",
+      "status": 200
+    },
+    {
       "src": "/success",
       "dest": "/",
       "status": 200

@@ -1,12 +1,16 @@
 import { buttonVariants } from '../../ui/button';
 import { useTranslation } from 'react-i18next';
 
-import { getLinks } from '@/lib/links';
+import { Link } from '@tanstack/react-router';
 
-export function Footer() {
-  const { t } = useTranslation();
+import { getLinks, getSocial } from '@/lib/links';
+import { cn } from '@/lib/utils';
+
+export function Footer({ hideLinks = false }: { hideLinks?: boolean }) {
+  const { t } = useTranslation('footer');
 
   const links = getLinks();
+  const socials = getSocial();
 
   const iconButton = buttonVariants({
     variant: 'ghost',
@@ -15,10 +19,28 @@ export function Footer() {
   });
 
   return (
-    <footer className="flex flex-col items-center justify-center gap-6 bg-secondary px-8 py-10 text-secondary-foreground">
+    <footer className="flex flex-col items-center justify-center gap-6 bg-secondary px-8 py-16 text-secondary-foreground">
+      <nav
+        aria-label="Footer"
+        className={cn(
+          '-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12',
+          hideLinks && 'hidden'
+        )}
+      >
+        {links.map((link, i) => (
+          <div key={i} className="pb-6">
+            <Link
+              to={link.href}
+              className="text-sm leading-6 text-gray-600 underline-offset-4 transition-colors hover:text-primary hover:underline"
+            >
+              {t(link.i18nKey, { ns: 'navbar' })}
+            </Link>
+          </div>
+        ))}
+      </nav>
       <div className="flex items-center gap-8">
-        {links.facebook.href !== '#' && (
-          <a href={links.facebook.href} className={iconButton}>
+        {socials.facebook.href !== '#' && (
+          <a href={socials.facebook.href} className={iconButton}>
             <svg
               width="32"
               height="32"
@@ -31,7 +53,7 @@ export function Footer() {
           </a>
         )}
       </div>
-      <div className="text-center text-sm opacity-50">{t('copyright', { ns: 'footer' })}</div>
+      <div className="text-center text-sm opacity-50">{t('copyright')}</div>
     </footer>
   );
 }
