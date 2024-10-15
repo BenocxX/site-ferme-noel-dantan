@@ -38,6 +38,10 @@ const links: {
     i18nKey: 'faq',
     href: '/faq',
   },
+  {
+    i18nKey: 'policies',
+    href: '/policies',
+  },
 ];
 
 function NavbarSheet() {
