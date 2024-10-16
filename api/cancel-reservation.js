@@ -48,6 +48,10 @@ export async function GET(request) {
 export async function POST(request) {
   const { hash } = await request.json();
 
+  if (!hash) {
+    return json({ error: 'hashMissing' }, { status: 400 });
+  }
+
   const uniqueReservation = await prisma.uniqueReservation.findFirst({
     where: {
       hash,

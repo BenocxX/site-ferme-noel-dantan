@@ -3,6 +3,11 @@ import { z } from 'zod';
 
 import { PrismaClient } from '@prisma/client';
 
+const schema = z.object({
+  reservationId: z.coerce.number(),
+  email: z.string().email(),
+});
+
 export function json(content, init = {}) {
   const { headers, ...rest } = init;
   return new Response(JSON.stringify(content), {
@@ -68,10 +73,16 @@ export async function GET(request) {
  */
 export async function POST(request) {
   const body = await request.json();
-  const { reservationId: id, email } = body;
+  const result = schema.safeParse(body);
+
+  if (result.error) {
+    return json({ error: 'Invalid body' }, { status: 400 });
+  }
+
+  const { reservationId, email } = result.data;
 
   const reservation = await prisma.reservation.findFirst({
-    where: { id },
+    where: { id: reservationId },
   });
 
   if (!reservation) {
