@@ -5,6 +5,7 @@
     "home": "Retour à l'accueil",
     "cancel": "Annuler ma réservation"
   },
+  "emailAlert": "Vérifier votre boître de courriel indésirable!",
   "alert": {
     "title": "Êtes-vous sûr de vouloir annuler votre réservation?",
     "description": "Une fois annulée, d'autres clients pourront prendre votre place. Cependant, rien ne vous empêche de réserver à nouveau!",

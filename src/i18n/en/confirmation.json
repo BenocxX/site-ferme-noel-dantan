@@ -5,6 +5,7 @@
     "home": "Back to home",
     "cancel": "Cancel my reservation"
   },
+  "emailAlert": "Check your spam folder!",
   "alert": {
     "title": "Are you sure you want to cancel your reservation?",
     "description": "Once canceled, other customers can take your place. However, nothing prevents you from booking again!",

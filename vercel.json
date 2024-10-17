@@ -26,6 +26,11 @@
       "status": 200
     },
     {
+      "src": "/politique-de-cookies-ca/",
+      "dest": "/",
+      "status": 200
+    },
+    {
       "src": "/politique-de-cookies-ca",
       "dest": "/",
       "status": 200
