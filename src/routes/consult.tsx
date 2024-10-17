@@ -28,6 +28,7 @@ import { Button } from '@/components/ui/button';
 const consultSearch = z.object({
   hash: z.string().catch(''),
   date: z.coerce.date().catch(new Date()),
+  time: z.string().catch(''),
 });
 
 export const Route = createFileRoute('/consult')({
@@ -45,16 +46,11 @@ export const Route = createFileRoute('/consult')({
 function ConsultPage() {
   const { t, i18n } = useTranslation('consult');
   const navigate = useNavigate();
-  const { hash, date } = Route.useSearch();
+  const { hash, date, time } = Route.useSearch();
 
   const formattedDate = formatDate(date, 'PPP', {
     locale: i18n.language === 'fr' ? frCA : undefined,
   });
-
-  // eslint-disable-next-line quotes
-  // const formattedTime = formatDate(date, "H'h'mm", {
-  //   locale: i18n.language === 'fr' ? frCA : undefined,
-  // });
 
   const mutation = useMutation({
     mutationFn: () => axios.post('/api/cancel-reservation', { hash }),
@@ -99,11 +95,11 @@ function ConsultPage() {
                 i18nKey="description"
                 values={{
                   date: formattedDate,
-                  // time: formattedTime,
+                  time,
                 }}
                 components={{
                   date: <strong className="font-semibold text-gray-900" />,
-                  // time: <strong className="font-semibold text-gray-900" />,
+                  time: <strong className="font-semibold text-gray-900" />,
                   faqLink: (
                     <Link to="/faq" className="text-primary underline-offset-4 hover:underline" />
                   ),

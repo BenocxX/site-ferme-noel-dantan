@@ -30,6 +30,7 @@ const confirmationSearch = z.object({
   hash: z.string().catch(''),
   email: z.string().catch(''),
   date: z.coerce.date().catch(new Date()),
+  time: z.string().catch(''),
 });
 
 export const Route = createFileRoute('/confirmation')({
@@ -47,16 +48,11 @@ export const Route = createFileRoute('/confirmation')({
 function ConfirmationPage() {
   const { t, i18n } = useTranslation('confirmation');
   const navigate = useNavigate();
-  const { hash, email, date } = Route.useSearch();
+  const { hash, email, date, time } = Route.useSearch();
 
   const formattedDate = formatDate(date, 'PPPP', {
     locale: i18n.language === 'fr' ? frCA : undefined,
   });
-
-  // eslint-disable-next-line quotes
-  // const formattedTime = formatDate(date, "H'h'mm", {
-  //   locale: i18n.language === 'fr' ? frCA : undefined,
-  // });
 
   const mutation = useMutation({
     mutationFn: () => axios.post('/api/cancel-reservation', { hash }),
@@ -105,12 +101,12 @@ function ConfirmationPage() {
                 i18nKey="description"
                 values={{
                   date: formattedDate,
-                  // time: formattedTime,
+                  time,
                   email,
                 }}
                 components={{
                   date: <strong className="font-semibold text-gray-900" />,
-                  // time: <strong className="font-semibold text-gray-900" />,
+                  time: <strong className="font-semibold text-gray-900" />,
                   email: <strong className="font-semibold text-gray-900" />,
                 }}
               />

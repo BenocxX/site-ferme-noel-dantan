@@ -105,14 +105,11 @@ export async function POST(request) {
   const hash = await createUniqueReservation({ reservation, email });
   await incrementReservationCount({ reservation });
 
-  const hour = reservation.halfHour.period.split(':')[0];
-  const minutes = reservation.halfHour.period.split(':')[1];
+  const date = reservation.openDate.date;
+  const time = reservation.halfHour.period.replace(':', 'h');
 
-  const date = new Date(reservation.openDate.date);
-  date.setHours(+hour, +minutes);
-
-  await sendReservationEmail({ hash, email, date, language });
-  return json({ hash, email, date }, { status: 200 });
+  await sendReservationEmail({ hash, email, date, time, language });
+  return json({ hash, email, time, date }, { status: 200 });
 }
 
 async function createUniqueReservation({ reservation, email }) {
@@ -157,7 +154,7 @@ async function incrementReservationCount({ reservation }) {
   });
 }
 
-async function sendReservationEmail({ hash, email, date, language }) {
+async function sendReservationEmail({ hash, email, date, time, language }) {
   const formattedDate = formatDate(date, 'PPP', {
     locale: language === 'fr' ? frCA : undefined,
   });
@@ -168,6 +165,7 @@ async function sendReservationEmail({ hash, email, date, language }) {
     html: generateEnglishEmail({
       email,
       date: formattedDate,
+      time,
       hash,
       rawDate: date,
     }),
@@ -179,6 +177,7 @@ async function sendReservationEmail({ hash, email, date, language }) {
     html: generateFrenchEmail({
       email,
       date: formattedDate,
+      time,
       hash,
       rawDate: date,
     }),
@@ -204,7 +203,7 @@ async function sendReservationEmail({ hash, email, date, language }) {
   return true;
 }
 
-function generateEnglishEmail({ email, date, hash, rawDate }) {
+function generateEnglishEmail({ email, date, time, hash, rawDate }) {
   return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!--$-->
 <html dir="ltr" lang="en">
   <head>
@@ -226,8 +225,8 @@ function generateEnglishEmail({ email, date, hash, rawDate }) {
                   <td>
                     <p style="font-size:32px;line-height:24px;margin:16px 0;color:#b80022;text-align:left">Ferme Noël d&#x27;Antan</p>
                     <hr style="width:100%;border:none;border-top:1px solid #eaeaea;border-color:#e6ebf1;margin:20px 0"/>
-                    <p style="font-size:16px;line-height:24px;margin:16px 0;color:#525f7f;text-align:left">Your reservation for ${date} has been successfully submitted. Looking forward to seeing you soon!</p>
-                    <a href="${process.env.CONSULT_URL}?hash=${hash}&amp;email=${email}&amp;date=${rawDate}" style="line-height:100%;text-decoration:none;display:block;max-width:100%;mso-padding-alt:0px;background-color:#b80022;border-radius:5px;color:#fff;font-size:16px;font-weight:bold;text-align:center;width:100%;padding:10px 10px 10px 10px" target="_blank">
+                    <p style="font-size:16px;line-height:24px;margin:16px 0;color:#525f7f;text-align:left">Your reservation for ${date} at ${time} has been successfully submitted. Looking forward to seeing you soon!</p>
+                    <a href="${process.env.CONSULT_URL}?hash=${hash}&amp;email=${email}&amp;date=${rawDate}&amp;time=${time}" style="line-height:100%;text-decoration:none;display:block;max-width:100%;mso-padding-alt:0px;background-color:#b80022;border-radius:5px;color:#fff;font-size:16px;font-weight:bold;text-align:center;width:100%;padding:10px 10px 10px 10px" target="_blank">
                       <span>
                         <!--[if mso]><i style="mso-font-width:500%;mso-text-raise:15" hidden>&#8202;</i><![endif]-->
                       </span>
@@ -251,7 +250,7 @@ function generateEnglishEmail({ email, date, hash, rawDate }) {
 <!--/$-->`;
 }
 
-function generateFrenchEmail({ email, date, hash, rawDate }) {
+function generateFrenchEmail({ email, date, time, hash, rawDate }) {
   return `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!--$-->
 <html dir="ltr" lang="en">
   <head>
@@ -273,8 +272,8 @@ function generateFrenchEmail({ email, date, hash, rawDate }) {
                   <td>
                     <p style="font-size:32px;line-height:24px;margin:16px 0;color:#b80022;text-align:left">Ferme Noël d&#x27;Antan</p>
                     <hr style="width:100%;border:none;border-top:1px solid #eaeaea;border-color:#e6ebf1;margin:20px 0"/>
-                    <p style="font-size:16px;line-height:24px;margin:16px 0;color:#525f7f;text-align:left">Votre réservation du ${date} a été soumise avec succès. Au plaisir de vous voir bientôt!</p>
-                    <a href="${process.env.CONSULT_URL}?hash=${hash}&amp;email=${email}&amp;date=${rawDate}" style="line-height:100%;text-decoration:none;display:block;max-width:100%;mso-padding-alt:0px;background-color:#b80022;border-radius:5px;color:#fff;font-size:16px;font-weight:bold;text-align:center;width:100%;padding:10px 10px 10px 10px" target="_blank">
+                    <p style="font-size:16px;line-height:24px;margin:16px 0;color:#525f7f;text-align:left">Votre réservation du ${date} à ${time} a été soumise avec succès. Au plaisir de vous voir bientôt!</p>
+                    <a href="${process.env.CONSULT_URL}?hash=${hash}&amp;email=${email}&amp;date=${rawDate}&amp;time=${time}" style="line-height:100%;text-decoration:none;display:block;max-width:100%;mso-padding-alt:0px;background-color:#b80022;border-radius:5px;color:#fff;font-size:16px;font-weight:bold;text-align:center;width:100%;padding:10px 10px 10px 10px" target="_blank">
                       <span>
                         <!--[if mso]><i style="mso-font-width:500%;mso-text-raise:15" hidden>&#8202;</i><![endif]-->
                       </span>
