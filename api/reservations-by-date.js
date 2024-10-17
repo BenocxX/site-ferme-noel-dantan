@@ -74,7 +74,7 @@ export async function GET(request) {
 }
 
 /**
- * Reserves a spot for a specific date and half hour.
+ * Reserves a spot for a specific date and half hour
  */
 export async function POST(request) {
   const body = await request.json();
