@@ -138,7 +138,7 @@ function generateEnglishEmail({ email, date, time, hash, rawDate }) {
                   <td>
                     <p style="font-size:32px;line-height:24px;margin:16px 0;color:#b80022;text-align:left">Ferme Noël d&#x27;Antan</p>
                     <hr style="width:100%;border:none;border-top:1px solid #eaeaea;border-color:#e6ebf1;margin:20px 0"/>
-                    <p style="font-size:16px;line-height:24px;margin:16px 0;color:#525f7f;text-align:left">Your reservation for ${date} at ${time} has been successfully submitted. Looking forward to seeing you soon!</p>
+                    <p style="font-size:16px;line-height:24px;margin:16px 0;color:#525f7f;text-align:left">Your reservation for <strong>${date}</strong> at <strong>${time}</strong> has been successfully submitted. Looking forward to seeing you soon!</p>
                     <a href="${process.env.CONSULT_URL}?hash=${hash}&amp;email=${email}&amp;date=${rawDate}&amp;time=${time}" style="line-height:100%;text-decoration:none;display:block;max-width:100%;mso-padding-alt:0px;background-color:#b80022;border-radius:5px;color:#fff;font-size:16px;font-weight:bold;text-align:center;width:100%;padding:10px 10px 10px 10px" target="_blank">
                       <span>
                         <!--[if mso]><i style="mso-font-width:500%;mso-text-raise:15" hidden>&#8202;</i><![endif]-->
@@ -185,7 +185,7 @@ function generateFrenchEmail({ email, date, time, hash, rawDate }) {
                   <td>
                     <p style="font-size:32px;line-height:24px;margin:16px 0;color:#b80022;text-align:left">Ferme Noël d&#x27;Antan</p>
                     <hr style="width:100%;border:none;border-top:1px solid #eaeaea;border-color:#e6ebf1;margin:20px 0"/>
-                    <p style="font-size:16px;line-height:24px;margin:16px 0;color:#525f7f;text-align:left">Votre réservation du ${date} à ${time} a été soumise avec succès. Au plaisir de vous voir bientôt!</p>
+                    <p style="font-size:16px;line-height:24px;margin:16px 0;color:#525f7f;text-align:left">Votre réservation du <strong>${date}</strong> à <strong>${time}</strong> a été soumise avec succès. Au plaisir de vous voir bientôt!</p>
                     <a href="${process.env.CONSULT_URL}?hash=${hash}&amp;email=${email}&amp;date=${rawDate}&amp;time=${time}" style="line-height:100%;text-decoration:none;display:block;max-width:100%;mso-padding-alt:0px;background-color:#b80022;border-radius:5px;color:#fff;font-size:16px;font-weight:bold;text-align:center;width:100%;padding:10px 10px 10px 10px" target="_blank">
                       <span>
                         <!--[if mso]><i style="mso-font-width:500%;mso-text-raise:15" hidden>&#8202;</i><![endif]-->
