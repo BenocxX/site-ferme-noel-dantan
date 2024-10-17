@@ -14,6 +14,25 @@
       "confirm": "Confirmer l'annulation"
     }
   },
+  "onEmail": {
+    "loading": {
+      "title": "Envoie du email en cours...",
+      "description": "Cela peut prendre quelques secondes."
+    },
+    "success": {
+      "title": "Email envoyé avec succès!",
+      "description": "Vérifiez votre boîte de réception (et les courriels indésirables)."
+    },
+    "alreadySent": {
+      "title": "Email déjà envoyé!",
+      "description": "Vérifiez votre boîte de réception (et les courriels indésirables)."
+    },
+    "emailError": {
+      "title": "Échec de l'envoi de l'email.",
+      "description": "Nous sommes désolés de l'inconvénient. Veuillez réessayer dans 1-2 minutes..."
+    },
+    "sendAgain": "Renvoyer"
+  },
   "onCancelation": {
     "loading": "Annulation en cours...",
     "success": "Annulation réussie"

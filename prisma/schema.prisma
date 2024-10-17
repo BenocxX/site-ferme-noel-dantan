@@ -39,9 +39,10 @@ model Reservation {
 
 /// Represents a unique reservation. This is used to cancel a reservation
 model UniqueReservation {
-  id            Int    @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   reservationId Int
-  hash          String @unique
+  hash          String  @unique
+  emailSent     Boolean @default(false)
 
   reservation Reservation @relation(fields: [reservationId], references: [id])
 }

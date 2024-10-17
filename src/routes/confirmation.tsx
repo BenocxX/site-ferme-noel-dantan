@@ -1,7 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosError } from 'axios';
+import { VariantProps } from 'class-variance-authority';
 import { formatDate } from 'date-fns';
 import { frCA } from 'date-fns/locale';
-import { CircleAlert, Home, TriangleAlert } from 'lucide-react';
+import {
+  CircleAlert,
+  CircleCheck,
+  CircleEllipsis,
+  CircleX,
+  Home,
+  TriangleAlert,
+} from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -12,7 +22,7 @@ import { Link, createFileRoute, redirect, useNavigate } from '@tanstack/react-ro
 import AnimalHiver from '@/assets/images/animal-hiver.jpg';
 
 import { SnowFaller } from '@/components/custom/snow-faller';
-import { Alert, AlertTitle } from '@/components/ui/alert';
+import { Alert, AlertDescription, AlertTitle, alertVariants } from '@/components/ui/alert';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,6 +35,8 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
+
+import { cn } from '@/lib/utils';
 
 const confirmationSearch = z.object({
   hash: z.string().catch(''),
@@ -50,9 +62,73 @@ function ConfirmationPage() {
   const navigate = useNavigate();
   const { hash, email, date, time } = Route.useSearch();
 
+  const [emailAlert, setEmailAlert] = useState<{
+    variant: VariantProps<typeof alertVariants>['variant'];
+    icon: React.ReactElement;
+    title: any;
+    description: any;
+    showButton: boolean;
+  }>({
+    variant: 'default',
+    icon: <CircleEllipsis className="!top-1/2 h-8 w-8 !-translate-y-1/2" />,
+    title: 'onEmail.loading.title',
+    description: 'onEmail.loading.description',
+    showButton: false,
+  });
+
   const formattedDate = formatDate(date, 'PPPP', {
     locale: i18n.language === 'fr' ? frCA : undefined,
   });
+
+  const emailMutation = useMutation({
+    mutationFn: ({ resend }: { resend: boolean }) => {
+      return axios.post<{ message: string }>('/api/confirmation-email', {
+        hash,
+        email,
+        date: formattedDate,
+        time,
+        rawDate: date,
+        language: i18n.language,
+        resend,
+      });
+    },
+    onSuccess: async (data) => {
+      switch (data.data.message) {
+        case 'emailSent':
+          setEmailAlert({
+            variant: 'success',
+            icon: <CircleCheck className="!top-1/2 h-8 w-8 !-translate-y-1/2" />,
+            title: 'onEmail.success.title',
+            description: 'onEmail.success.description',
+            showButton: false,
+          });
+          break;
+        case 'emailAlreadySent':
+          setEmailAlert({
+            variant: 'info',
+            icon: <CircleAlert className="!top-1/2 h-8 w-8 !-translate-y-1/2" />,
+            title: 'onEmail.alreadySent.title',
+            description: 'onEmail.alreadySent.description',
+            showButton: true,
+          });
+          break;
+      }
+    },
+    onError: () => {
+      setEmailAlert({
+        variant: 'destructive',
+        icon: <CircleX className="!top-1/2 h-8 w-8 !-translate-y-1/2" />,
+        title: 'onEmail.emailError.title',
+        description: 'onEmail.emailError.description',
+        showButton: true,
+      });
+    },
+  });
+
+  useEffect(() => {
+    emailMutation.mutateAsync({ resend: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const mutation = useMutation({
     mutationFn: () => axios.post('/api/cancel-reservation', { hash }),
@@ -63,6 +139,18 @@ function ConfirmationPage() {
       });
     },
   });
+
+  function onResendEmailClick() {
+    setEmailAlert({
+      variant: 'default',
+      icon: <CircleEllipsis className="mt-1.5 h-8 w-8" />,
+      title: 'onEmail.loading.title',
+      description: 'onEmail.loading.description',
+      showButton: false,
+    });
+
+    emailMutation.mutateAsync({ resend: true });
+  }
 
   function onCancelClick() {
     const promise = mutation.mutateAsync();
@@ -91,9 +179,26 @@ function ConfirmationPage() {
             <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-900 sm:mt-10 sm:text-6xl">
               {t('title')}
             </h1>
-            <Alert variant="info" className="mb-0 mt-6">
-              <CircleAlert className="h-6 w-6" />
-              <AlertTitle className="ml-2 mt-1">{t('emailAlert')}</AlertTitle>
+            <Alert variant={emailAlert.variant} className="mb-0 mt-6">
+              {emailAlert.icon}
+              <AlertTitle className={cn('ml-4 mt-1', emailAlert.showButton && 'pr-24')}>
+                {t(emailAlert.title)}
+              </AlertTitle>
+              <AlertDescription className={cn('ml-4', emailAlert.showButton && 'pr-24')}>
+                {t(emailAlert.description)}
+              </AlertDescription>
+              {emailAlert.showButton && (
+                <div className="absolute right-2 top-1/2 -translate-y-1/2">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="hover:bg-black/5"
+                    onClick={onResendEmailClick}
+                  >
+                    {t('onEmail.sendAgain')}
+                  </Button>
+                </div>
+              )}
             </Alert>
             <p className="mt-4 text-lg leading-8 text-gray-600">
               <Trans

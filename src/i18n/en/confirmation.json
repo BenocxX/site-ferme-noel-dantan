@@ -14,6 +14,25 @@
       "confirm": "Confirm cancellation"
     }
   },
+  "onEmail": {
+    "loading": {
+      "title": "Sending email in progress...",
+      "description": "This may take a few seconds."
+    },
+    "success": {
+      "title": "Email sent successfully!",
+      "description": "Check your inbox (and spam folder)."
+    },
+    "alreadySent": {
+      "title": "Email already sent!",
+      "description": "Check your inbox (and spam folder)."
+    },
+    "emailError": {
+      "title": "Failed to send email.",
+      "description": "We apologize for the inconvenience. Please try again in 1-2 minutes..."
+    },
+    "sendAgain": "Send again"
+  },
   "onCancelation": {
     "loading": "Cancellation in progress...",
     "success": "Cancellation successful"
