@@ -1,7 +1,6 @@
 {
   "title": "Thank you and see you soon!",
-  "description1": "Your reservation has been successfully submitted. You should receive a confirmation email at the address",
-  "description2": "Looking forward to seeing you soon!",
+  "description": "Your reservation for <date>{{date}}</date> at <time>{{time}}</time> has been successfully submitted. You should receive a confirmation email at the address <email>{{email}}</email>. Looking forward to seeing you soon!",
   "buttons": {
     "home": "Back to home",
     "cancel": "Cancel my reservation"

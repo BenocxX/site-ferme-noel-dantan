@@ -1,6 +1,8 @@
 import axios, { AxiosError } from 'axios';
+import { formatDate } from 'date-fns';
+import { frCA } from 'date-fns/locale';
 import { TriangleAlert } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
@@ -14,6 +16,7 @@ import { Button } from '@/components/ui/button';
 
 const cancelationSearch = z.object({
   hash: z.string().catch(''),
+  date: z.coerce.date().catch(new Date()),
 });
 
 export const Route = createFileRoute('/cancelation')({
@@ -29,9 +32,18 @@ export const Route = createFileRoute('/cancelation')({
 });
 
 function CancelationPage() {
-  const { t } = useTranslation('cancelation');
+  const { t, i18n } = useTranslation('cancelation');
   const navigate = useNavigate();
-  const { hash } = Route.useSearch();
+  const { hash, date } = Route.useSearch();
+
+  const formattedDate = formatDate(date, 'PPP', {
+    locale: i18n.language === 'fr' ? frCA : undefined,
+  });
+
+  // eslint-disable-next-line quotes
+  const formattedTime = formatDate(date, "H'h'mm", {
+    locale: i18n.language === 'fr' ? frCA : undefined,
+  });
 
   const mutation = useMutation({
     mutationFn: () => axios.post('/api/cancel-reservation', { hash }),
@@ -70,7 +82,20 @@ function CancelationPage() {
             <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-900 sm:mt-10 sm:text-6xl">
               {t('title')}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">{t('description')}</p>
+            <p className="mt-6 text-lg leading-8 text-gray-600">
+              <Trans
+                t={t}
+                i18nKey="description"
+                values={{
+                  date: formattedDate,
+                  time: formattedTime,
+                }}
+                components={{
+                  date: <strong className="font-semibold text-gray-900" />,
+                  time: <strong className="font-semibold text-gray-900" />,
+                }}
+              />
+            </p>
             <div className="mt-10 flex flex-col items-center gap-x-6 gap-y-4 sm:flex-row">
               <Button onClick={onCancelClick} className="w-full gap-2 px-6 sm:w-max">
                 {t('buttons.cancel')}

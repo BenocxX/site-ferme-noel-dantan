@@ -12,6 +12,9 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
+  globals: {
+    process: true,
+  },
   rules: {
     'react/no-unescaped-entities': 'off',
     'react/prop-types': 'off',

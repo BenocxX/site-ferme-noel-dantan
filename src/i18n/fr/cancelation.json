@@ -1,6 +1,6 @@
 {
   "title": "Annulation de réservation",
-  "description": "Vous vous apprêtez à annuler votre réservation. Êtes-vous sûr de vouloir continuer? Une fois la réservation annulée, d'autres clients pourront prendre votre place. Cependant, rien ne vous empêche de réserver à nouveau!",
+  "description": "Vous vous apprêtez à annuler votre réservation du <date>{{date}}</date> à <time>{{time}}</time>. Êtes-vous sûr de vouloir continuer? Une fois la réservation annulée, d'autres clients pourront prendre votre place. Cependant, rien ne vous empêche de réserver à nouveau!",
   "buttons": {
     "cancel": "Annuler ma réservation",
     "home": "Retour à l'accueil"

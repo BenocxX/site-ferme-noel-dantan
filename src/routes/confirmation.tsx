@@ -1,6 +1,8 @@
 import axios, { AxiosError } from 'axios';
+import { formatDate } from 'date-fns';
+import { frCA } from 'date-fns/locale';
 import { Home, TriangleAlert } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
@@ -26,6 +28,7 @@ import { Button } from '@/components/ui/button';
 const confirmationSearch = z.object({
   hash: z.string().catch(''),
   email: z.string().catch(''),
+  date: z.coerce.date().catch(new Date()),
 });
 
 export const Route = createFileRoute('/confirmation')({
@@ -41,9 +44,18 @@ export const Route = createFileRoute('/confirmation')({
 });
 
 function ConfirmationPage() {
-  const { t } = useTranslation('confirmation');
+  const { t, i18n } = useTranslation('confirmation');
   const navigate = useNavigate();
-  const { hash, email } = Route.useSearch();
+  const { hash, email, date } = Route.useSearch();
+
+  const formattedDate = formatDate(date, 'PPPP', {
+    locale: i18n.language === 'fr' ? frCA : undefined,
+  });
+
+  // eslint-disable-next-line quotes
+  const formattedTime = formatDate(date, "H'h'mm", {
+    locale: i18n.language === 'fr' ? frCA : undefined,
+  });
 
   const mutation = useMutation({
     mutationFn: () => axios.post('/api/cancel-reservation', { hash }),
@@ -83,8 +95,20 @@ function ConfirmationPage() {
               {t('title')}
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              {t('description1')} <span className="font-semibold text-gray-900">{email}</span>.{' '}
-              {t('description2')}
+              <Trans
+                t={t}
+                i18nKey="description"
+                values={{
+                  date: formattedDate,
+                  time: formattedTime,
+                  email,
+                }}
+                components={{
+                  date: <strong className="font-semibold text-gray-900" />,
+                  time: <strong className="font-semibold text-gray-900" />,
+                  email: <strong className="font-semibold text-gray-900" />,
+                }}
+              />
             </p>
             <div className="mt-10 flex flex-col items-center gap-x-6 gap-y-4 sm:flex-row">
               <Button asChild className="w-full gap-2 px-6 sm:w-max">

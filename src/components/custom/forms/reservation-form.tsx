@@ -103,7 +103,10 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
   // Mutation to create a reservation (submit the form)
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof FormSchema>) => {
-      return axios.post<{ hash: string; email: string }>('/api/reservations-by-date', data);
+      return axios.post<{ hash: string; email: string; date: Date }>(
+        '/api/reservations-by-date',
+        data
+      );
     },
     onSuccess: async ({ data }) => {
       await navigate({
