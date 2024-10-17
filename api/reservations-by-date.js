@@ -35,7 +35,7 @@ export function getParam(request, key) {
 const prisma = new PrismaClient();
 
 /**
- * Returns all available reservation spots for a specific date.
+ * Returns all available reservation spots for a specific date
  */
 export async function GET(request) {
   const dateId = getParam(request, 'dateId');
