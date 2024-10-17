@@ -63,7 +63,7 @@ export async function POST(request) {
 
   // To avoid "double sending" if user refreshes the page or goes to another page and comes back
   // before the email is sent. So we optimistically set the emailSent to true, if the email fails
-  // we set it back to false.
+  // we set it back to false
   await prisma.uniqueReservation.update({
     where: { hash },
     data: { emailSent: true },
