@@ -31,7 +31,7 @@
       "status": 200
     },
     {
-      "src": "/cancelation",
+      "src": "/consult",
       "dest": "/",
       "status": 200
     },

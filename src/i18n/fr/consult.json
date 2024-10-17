@@ -1,0 +1,13 @@
+{
+  "title": "Consultation de votre réservation",
+  "description": "Vous avez réservé pour le <date>{{date}}</date> à <time>{{time}}</time>. Si vous avez des questions, n'hésitez pas à consulter notre <faqLink>FAQ</faqLink> ou à nous contacter directement au <phoneLink href=\"tel:$t(common:contact.phone.compact)\">$t(common:contact.phone.formatted)</phoneLink>.",
+  "buttons": {
+    "home": "Retour à l'accueil",
+    "cancel": "Annuler ma réservation"
+  },
+  "onCancelation": {
+    "loading": "Annulation en cours...",
+    "success": "Annulation réussie"
+  },
+  "imageAlt": "Animal en hiver"
+}

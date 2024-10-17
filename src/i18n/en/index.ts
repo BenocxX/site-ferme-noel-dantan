@@ -1,6 +1,6 @@
-import cancelation from './cancelation.json';
 import common from './common.json';
 import confirmation from './confirmation.json';
+import consult from './consult.json';
 import faq from './faq.json';
 import footer from './footer.json';
 import home from './home.json';
@@ -15,7 +15,7 @@ const enTranslations = {
   zod_custom,
   common,
   confirmation,
-  cancelation,
+  consult,
   navbar,
   home,
   reservation,

@@ -72,6 +72,7 @@ const rules: {
 ];
 
 const FormSchema = z.object({
+  language: z.string().optional(),
   email: z.string().email(),
   date: z.number(),
   reservationId: z.coerce
@@ -143,6 +144,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+      language: i18n.language,
       date: openDatesQuery.isSuccess ? openDatesQuery.data[0].id : undefined,
       acceptedRules: [],
     },
@@ -167,6 +169,10 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
       form.setValue('date', earliestDate?.id);
     }
   }, [earliestDate, form]);
+
+  useEffect(() => {
+    form.setValue('language', i18n.language);
+  }, [form, i18n.language]);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const promise = mutation.mutateAsync(data);

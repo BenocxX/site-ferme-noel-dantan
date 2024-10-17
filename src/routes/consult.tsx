@@ -12,27 +12,38 @@ import { Link, createFileRoute, redirect, useNavigate } from '@tanstack/react-ro
 import AnimalHiver from '@/assets/images/animal-hiver.jpg';
 
 import { SnowFaller } from '@/components/custom/snow-faller';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 
-const cancelationSearch = z.object({
+const consultSearch = z.object({
   hash: z.string().catch(''),
   date: z.coerce.date().catch(new Date()),
 });
 
-export const Route = createFileRoute('/cancelation')({
-  validateSearch: cancelationSearch,
+export const Route = createFileRoute('/consult')({
+  validateSearch: consultSearch,
   beforeLoad: async ({ search: { hash } }) => {
     try {
       await axios.get('/api/cancel-reservation', { params: { hash } });
     } catch (error) {
-      throw redirect({ to: '/', from: '/cancelation' });
+      throw redirect({ to: '/', from: '/consult' });
     }
   },
-  component: CancelationPage,
+  component: ConsultPage,
 });
 
-function CancelationPage() {
-  const { t, i18n } = useTranslation('cancelation');
+function ConsultPage() {
+  const { t, i18n } = useTranslation('consult');
   const navigate = useNavigate();
   const { hash, date } = Route.useSearch();
 
@@ -49,7 +60,7 @@ function CancelationPage() {
     mutationFn: () => axios.post('/api/cancel-reservation', { hash }),
     onSuccess: async () => {
       await navigate({
-        from: '/cancelation',
+        from: '/consult',
         to: '/',
       });
     },
@@ -93,17 +104,41 @@ function CancelationPage() {
                 components={{
                   date: <strong className="font-semibold text-gray-900" />,
                   time: <strong className="font-semibold text-gray-900" />,
+                  faqLink: (
+                    <Link to="/faq" className="text-primary underline-offset-4 hover:underline" />
+                  ),
+                  phoneLink: <a className="text-primary underline-offset-4 hover:underline" />,
                 }}
               />
             </p>
             <div className="mt-10 flex flex-col items-center gap-x-6 gap-y-4 sm:flex-row">
-              <Button onClick={onCancelClick} className="w-full gap-2 px-6 sm:w-max">
-                {t('buttons.cancel')}
-                <TriangleAlert className="h-5" />
-              </Button>
-              <Button asChild variant="ghost" className="w-full sm:w-max">
+              <Button asChild className="w-full sm:w-max">
                 <Link to="/about">{t('buttons.home')}</Link>
               </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="ghost" className="w-full sm:w-max">
+                    {t('buttons.cancel')}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>{t('alert.title', { ns: 'confirmation' })}</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      {t('alert.description', { ns: 'confirmation' })}
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>
+                      {t('alert.buttons.back', { ns: 'confirmation' })}
+                    </AlertDialogCancel>
+                    <AlertDialogAction onClick={onCancelClick} className="gap-2">
+                      {t('alert.buttons.confirm', { ns: 'confirmation' })}
+                      <TriangleAlert className="h-5" />
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
         </div>
