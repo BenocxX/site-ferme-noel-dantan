@@ -1,6 +1,6 @@
 {
   "title": "Cancelation of reservation",
-  "description": "You are about to cancel your reservation for <date>{{date}}</date> at <time>{{time}}</time>. Are you sure you want to continue? Once the reservation is canceled, other customers can take your place. However, nothing prevents you from booking again!",
+  "description": "You are about to cancel your reservation for <date>{{date}}</date>. Are you sure you want to continue? Once the reservation is canceled, other customers can take your place. However, nothing prevents you from booking again!",
   "buttons": {
     "cancel": "Cancel my reservation",
     "home": "Back to home"

@@ -52,9 +52,9 @@ function ConsultPage() {
   });
 
   // eslint-disable-next-line quotes
-  const formattedTime = formatDate(date, "H'h'mm", {
-    locale: i18n.language === 'fr' ? frCA : undefined,
-  });
+  // const formattedTime = formatDate(date, "H'h'mm", {
+  //   locale: i18n.language === 'fr' ? frCA : undefined,
+  // });
 
   const mutation = useMutation({
     mutationFn: () => axios.post('/api/cancel-reservation', { hash }),
@@ -99,11 +99,11 @@ function ConsultPage() {
                 i18nKey="description"
                 values={{
                   date: formattedDate,
-                  time: formattedTime,
+                  // time: formattedTime,
                 }}
                 components={{
                   date: <strong className="font-semibold text-gray-900" />,
-                  time: <strong className="font-semibold text-gray-900" />,
+                  // time: <strong className="font-semibold text-gray-900" />,
                   faqLink: (
                     <Link to="/faq" className="text-primary underline-offset-4 hover:underline" />
                   ),

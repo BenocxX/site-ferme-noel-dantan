@@ -1,6 +1,6 @@
 {
   "title": "Merci et à bientôt!",
-  "description": "Votre réservation du <date>{{date}}</date> à <time>{{time}}</time> a été soumise avec succès. Vous devriez recevoir un email de confirmation à l'adresse <email>{{email}}</email>. Au plaisir de vous voir bientôt!",
+  "description": "Votre réservation du <date>{{date}}</date>  a été soumise avec succès. Vous devriez recevoir un email de confirmation à l'adresse <email>{{email}}</email>. Au plaisir de vous voir bientôt!",
   "buttons": {
     "home": "Retour à l'accueil",
     "cancel": "Annuler ma réservation"
