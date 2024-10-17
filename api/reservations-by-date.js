@@ -198,6 +198,9 @@ async function sendReservationEmail({ hash, email, date, language }) {
     content: language === 'fr' ? frContent : enContent,
   };
 
+  console.log('========== ENV VARIABLES ==========');
+  console.log(process.env);
+
   const client = new EmailClient(process.env.COMMUNICATION_SERVICE_CONNECTION_STRING);
   const poller = await client.beginSend(message);
   const pollerResult = await poller.pollUntilDone();
