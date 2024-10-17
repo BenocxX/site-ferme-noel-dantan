@@ -111,7 +111,7 @@ export async function POST(request) {
   const date = new Date(reservation.openDate.date);
   date.setHours(+hour, +minutes);
 
-  const isSuccess = await sendReservationEmail({ hash, email, date, language });
+  await sendReservationEmail({ hash, email, date, language });
   return json({ hash, email, date }, { status: 200 });
 }
 
