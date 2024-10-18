@@ -204,7 +204,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
         className={cn('space-y-8', className)}
         {...formProps}
       >
-        <div className="flex flex-col items-center gap-4 lg:flex-row lg:items-start">
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-start lg:items-start">
           <FormField
             control={form.control}
             name="date"
@@ -284,7 +284,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
             )}
           />
           <Separator orientation="vertical" className="hidden h-[305px] lg:block" />
-          <div className="flex flex-col gap-2 lg:w-full">
+          <div className="flex w-full flex-col gap-2">
             {selectedOpenDate ? (
               <>
                 <h3 className="flex items-center gap-2 text-2xl font-semibold">
@@ -322,7 +322,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                   </Popover>
                 </h3>
                 <div className="mt-[9px] flex flex-col gap-4">
-                  <div className="flex flex-col gap-2 lg:flex-row">
+                  <div className="flex flex-col gap-2 md:flex-row">
                     <FormField
                       control={form.control}
                       name="reservationId"

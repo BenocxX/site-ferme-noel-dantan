@@ -47,8 +47,8 @@ function Reservation() {
             </div>
           </div>
           <div className="flex h-full flex-1 flex-col px-8 py-4 max-lg:my-4 lg:min-w-[800px]">
-            <h1 className="mb-6 text-center text-5xl lg:mb-4 lg:text-left">{t('title')}</h1>
-            <p className="mb-4 text-center text-muted-foreground lg:text-left">
+            <h1 className="mb-6 text-center text-5xl sm:mb-4 sm:text-left">{t('title')}</h1>
+            <p className="mb-4 text-center text-muted-foreground sm:text-left">
               {/* Ref: https://react.i18next.com/latest/trans-component#alternative-usage-which-lists-the-components-v11.6.0 */}
               <Trans
                 t={t}
