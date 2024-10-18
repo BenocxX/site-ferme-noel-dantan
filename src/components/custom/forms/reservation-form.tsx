@@ -104,7 +104,7 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
   // Mutation to create a reservation (submit the form)
   const mutation = useMutation({
     mutationFn: (data: z.infer<typeof FormSchema>) => {
-      return axios.post<{ hash: string; email: string; date: Date }>(
+      return axios.post<{ hash: string; email: string; date: Date; time: string }>(
         '/api/reservations-by-date',
         data
       );
@@ -211,6 +211,14 @@ export function ReservationForm({ className, ...formProps }: React.ComponentProp
                 {openDatesQuery.isSuccess ? (
                   <Calendar
                     required
+                    modifiers={{
+                      hasReservations: openDatesQuery.data
+                        ?.filter((openDate) => openDate.totalAM > 0 || openDate.totalPM > 0)
+                        .map((openDate) => openDate.date),
+                    }}
+                    modifiersClassNames={{
+                      hasReservations: 'bg-green-50 aria-selected:bg-primary hover:bg-green-100',
+                    }}
                     onDayClick={(day) => {
                       setSelectedOpenDate(
                         openDatesQuery.data?.find((date) => compareDates(date.date, day))
