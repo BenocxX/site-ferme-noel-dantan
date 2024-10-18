@@ -29,7 +29,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -434,7 +436,7 @@ function ReservationSpotsItems({
   if (reservationSpotsQuery.isLoading) {
     return (
       <SelectItem value={'1'} disabled>
-        {t('loading', { ns: 'common' })}
+        <span>{t('loading', { ns: 'common' })}</span>
       </SelectItem>
     );
   }
@@ -446,11 +448,25 @@ function ReservationSpotsItems({
       </SelectItem>
     );
   } else if (reservationSpotsQuery.isSuccess) {
-    return reservationSpotsQuery.data.map((reservation, i) => (
-      <SelectItem key={i} value={reservation.id.toString()}>
-        {reservation.halfHour.period}
-      </SelectItem>
-    ));
+    return (
+      <SelectGroup>
+        <SelectLabel className="flex items-center justify-between">
+          <span>{t('timeOfReservation.select.leftLabel')}</span>
+          <span className="opacity-40">{t('timeOfReservation.select.rightLabel')}</span>
+        </SelectLabel>
+        {reservationSpotsQuery.data.map((reservation, i) => (
+          <SelectItem
+            key={i}
+            value={reservation.id.toString()}
+            rightComponent={
+              <span className="absolute right-2 opacity-40">{reservation.count} / 10</span>
+            }
+          >
+            {reservation.halfHour.period}
+          </SelectItem>
+        ))}
+      </SelectGroup>
+    );
   }
 }
 

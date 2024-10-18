@@ -14,7 +14,11 @@
   "statsTitle": "Nombre de réservations:",
   "timeOfReservation": {
     "label": "Heure de la réservation",
-    "placeholder": "Sélectionnez une heure"
+    "placeholder": "Sélectionnez une heure",
+    "select": {
+      "leftLabel": "Heures",
+      "rightLabel": "Réservations"
+    }
   },
   "email": {
     "label": "Adresse courriel",
